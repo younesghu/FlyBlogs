@@ -8,9 +8,17 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+
+    /**
+     Login Page
+    */
+    public function login(){
+        return view('/login');
+    }
+
     /**
      Register User
-     */
+    */
     public function register(Request $request){
         $data = $request->validate([
             'name' => ['required', 'min:3', 'max:10', Rule::unique('users', 'name')],
@@ -21,7 +29,31 @@ class UserController extends Controller
         $user = User::create($data);
         auth()->login($user);
 
-        return view('app');
+        return redirect('/');
+    }
+
+    /**
+    Authentificate User
+     */
+    public function authentificate(Request $request){
+        $data = $request->validate([
+            'loginname' => 'required',
+            'loginpassword' => 'required'
+        ]);
+
+    if(auth()->attempt(['name' =>$data['loginname'], 'password' => $data['loginpassword']])) {
+        $request->session()->regenerate();
+    }
+    return redirect('/');
+    }
+
+    /**
+    Log out User
+     */
+
+     public function logout(){
+        auth()->logout();
+        return redirect('/');
     }
 
     /**

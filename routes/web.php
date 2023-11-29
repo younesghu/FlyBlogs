@@ -18,3 +18,6 @@ Route::get('/', function () {
     return view('main');
 });
 Route::post('/register', [UserController::class, 'register']);
+Route::get('/login', [UserController::class, 'login']);
+Route::post('/authentificate', [UserController::class, 'authentificate']);
+Route::post('/logout', [UserController::class, 'logout']);

@@ -10,6 +10,7 @@
 <body>
 
     @auth
+
         @if(Auth::check()) <!-- Check if the user is logged in -->
         <p>Hello mister <strong><u>{{ Auth::user()->name }}</u></p>
         @endif
@@ -18,33 +19,34 @@
             @csrf
             <button>Logout</button>
         </form>
+
     @else
-    <div class="container">
-        <form class="form" action="/register" method="POST">
-        @csrf
-            <div>
-                <label for="name">Name</label>
-                <div class="input">
-                    <input id="name" type="text" name="name" required>
+        <div class="container">
+            <form class="form" action="/register" method="POST">
+            @csrf
+                <div>
+                    <label for="name">Name</label>
+                    <div class="input">
+                        <input id="name" type="text" name="name" required>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <div class="input">
-                    <input id="email" type="email" name="email" required>
+                <div>
+                    <label for="email">Email</label>
+                    <div class="input">
+                        <input id="email" type="email" name="email" required>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <div class="input">
-                    <input id="password" type="password" name="password" required>
+                <div>
+                    <label for="password">Password</label>
+                    <div class="input">
+                        <input id="password" type="password" name="password" required>
+                    </div>
                 </div>
-            </div>
-            <button type="submit">Register</button>
-            <a href="/login">login</a>
-        </form>
-    </div>
-@endauth
+                <button type="submit">Register</button>
+                <a href="/login">login</a>
+            </form>
+        </div>
+    @endauth
 
 </body>
 </html>

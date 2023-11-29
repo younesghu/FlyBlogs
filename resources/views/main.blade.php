@@ -20,6 +20,30 @@
             <button>Logout</button>
         </form>
 
+        <form action="/store" method="POST">
+            @csrf
+            <div>
+                <label for="title">Blog Title</label>
+                <div class="input">
+                    <input id="title" type="text" name="title" required>
+                </div>
+            </div>
+            <div>
+                <label for="title">Blog Content</label>
+                <div class="input">
+                    <input id="content" type="text" name="content" required>
+                </div>
+            </div>
+            <div>
+                <label for="categories">Blog Category</label>
+                <div class="input">
+                    <input id="categories" type="text" name="categories" required>
+                </div>
+            </div>
+            <button type="submit">Add Blog</button>
+
+        </form>
+
     @else
         <div class="container">
             <form class="form" action="/register" method="POST">

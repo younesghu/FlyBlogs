@@ -1,6 +1,6 @@
 .container {
     width: 350px;
-    height: 500px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,8 +72,8 @@
     font-size: 15px;
     align-self: flex-start;
     padding: 0.6em;
-    border: none;
     cursor: pointer;
+    border: none;
     margin-bottom: 50px;
     background: transparent;
     transition: all 0.3s ease-in-out;

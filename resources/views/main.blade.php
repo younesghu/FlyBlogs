@@ -28,7 +28,8 @@
         <button type="submit">Register</button>
     </form> --}}
     <div class="container">
-        <form class="form" action="">
+        <form class="form" action="/register" method="POST">
+        @csrf
         <div>
             <label for="name">Name</label>
             <div class="input">
@@ -45,12 +46,6 @@
             <label for="password">Password</label>
             <div class="input">
                 <input id="password" type="password" name="password" required>
-            </div>
-        </div>
-        <div>
-            <label for="password_confirmation">Confirm Password</label>
-            <div class="input">
-                <input id="password_confirmation" type="password" name="password_confirmation" required>
             </div>
         </div>
         <button type="submit">Register</button>

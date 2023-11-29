@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('content');
             $table->string('categories');
-            $table->datetime('posted_at');
+            $table->datetime('posted_at')->nullable();;
             $table->timestamps();
         });
     }

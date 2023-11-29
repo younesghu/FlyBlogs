@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class BlogController extends Controller
             'content' => 'required',
             'categories' => 'required'
         ]);
-
+        $data['posted_at'] = Carbon::now();
         $data['user_id'] = auth()->id();
 
         Blog::create($data);

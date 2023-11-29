@@ -10,9 +10,11 @@ class Blog extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'title',
         'content',
         'categories',
+        'posted_at'
     ];
 
     public function user(){

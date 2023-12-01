@@ -39,7 +39,7 @@ class BlogController extends Controller
 
         Blog::create($data);
 
-        return redirect('/')->with('message', 'Product added successfully!');
+        return redirect('/');
     }
 
     /**

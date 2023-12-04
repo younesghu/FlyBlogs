@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\Blog;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
-Route::post('/register', [UserController::class, 'register']);
-Route::get('/login', [UserController::class, 'login']);
-Route::post('/authentificate', [UserController::class, 'authentificate']);
-Route::post('/logout', [UserController::class, 'logout']);
+// Route::get('/', function () {
+//     return view('main');
+// });
+// Route::post('/register', [UserController::class, 'register']);
+// Route::get('/login', [UserController::class, 'login']);
+// Route::post('/authentificate', [UserController::class, 'authentificate']);
+// Route::post('/logout', [UserController::class, 'logout']);
 
 
-Route::post('/store', [BlogController::class, 'createBlog']);
+// Route::post('/store', [BlogController::class, 'createBlog']);
+Route::get('/', [BlogController::class, 'index']);
+
+Route::get('/blogs/{blog}', [BlogController::class, 'show']);

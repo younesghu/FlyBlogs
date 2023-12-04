@@ -11,14 +11,14 @@
 
     @auth
 
-        @if(Auth::check()) <!-- Check if the user is logged in -->
+        {{-- @if(Auth::check()) <!-- Check if the user is logged in -->
         <p>Hello mister <strong><u>{{ Auth::user()->name }}</u></p>
-        @endif
+        @endif --}}
 
-        <form action="/logout" method="POST">
+        {{-- <form action="/logout" method="POST">
             @csrf
             <button>Logout</button>
-        </form>
+        </form> --}}
 
         <form action="/store" method="POST">
             @csrf

@@ -22,6 +22,9 @@
     </a>
 
     @endforeach
+    <div class="mt-6 p-4">
+        {{$blogs->links()}}
+    </div>
 @endsection
 </body>
 </html>

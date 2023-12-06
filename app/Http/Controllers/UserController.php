@@ -10,16 +10,23 @@ class UserController extends Controller
 {
 
     /**
+    Register Page
+    */
+    public function create(Request $request){
+        return view('register');
+    }
+
+    /**
      Login Page
     */
-    public function login(){
-        return view('/login');
+    public function login(Request $request){
+        return view('login');
     }
 
     /**
      Register User
     */
-    public function register(Request $request){
+    public function store(Request $request){
         $data = $request->validate([
             'name' => ['required', 'min:3', 'max:10', Rule::unique('users', 'name')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],

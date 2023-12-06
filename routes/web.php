@@ -24,6 +24,9 @@ use App\Models\Blog;
 // Route::post('/authentificate', [UserController::class, 'authentificate']);
 // Route::post('/logout', [UserController::class, 'logout']);
 
+Route::post('/users', [UserController::class, 'store']);
+Route::get('/register', [UserController::class, 'create']);
+Route::get('/login', [UserController::class, 'login']);
 
 // Route::post('/store', [BlogController::class, 'createBlog']);
 Route::get('/', [BlogController::class, 'index']);

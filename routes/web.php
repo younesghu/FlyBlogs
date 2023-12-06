@@ -29,3 +29,4 @@ use App\Models\Blog;
 Route::get('/', [BlogController::class, 'index']);
 
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
+Route::get('/blogs/create', [BlogController::class, 'create']);

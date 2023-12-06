@@ -13,7 +13,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('blogs', [
+        return view('blogs.index', [
             'blogs' => Blog::latest()->filter(request(['search']))->SimplePaginate(6)
         ]);
     }
@@ -23,13 +23,13 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blogs.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function createBlog(Request $request)
+    public function store(Request $request)
     {
         $data = $request->validate([
             'title' => 'required',
@@ -49,7 +49,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('blog', [
+        return view('blogs.show', [
             'blog' => $blog
         ]);
     }

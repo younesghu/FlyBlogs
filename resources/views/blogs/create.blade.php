@@ -7,15 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-@extends('layout')
+@extends('layout.layout')
 
 @section('content')
-    <h2>
-        {{$blog['title']}}
-    </h2>
-    <p>
-        {{$blog['content']}}
-    </p>
+    welcome to create blog
 @endsection
 </body>
 </html>

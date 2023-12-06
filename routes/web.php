@@ -23,13 +23,16 @@ use App\Models\Blog;
 // Route::get('/login', [UserController::class, 'login']);
 // Route::post('/authentificate', [UserController::class, 'authentificate']);
 // Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/', [BlogController::class, 'index']);
 
+// Create new user
 Route::post('/users', [UserController::class, 'store']);
 Route::get('/register', [UserController::class, 'create']);
+Route::post('/users/authentificate', [UserController::class, 'authentificate']);
 Route::get('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout']);
 
 // Route::post('/store', [BlogController::class, 'createBlog']);
-Route::get('/', [BlogController::class, 'index']);
 
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
 Route::get('/blogs/create', [BlogController::class, 'create']);

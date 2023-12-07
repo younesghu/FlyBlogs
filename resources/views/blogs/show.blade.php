@@ -11,61 +11,71 @@
 
 @section('content')
 
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    {{-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" src="/images/nature-pic.jpg" alt="" />
         <div class="p-5">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$blog['title']}}</h5>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{$blog['content']}}</p>
         </div>
-    </div>
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <img class="rounded-t-lg" src="/images/nature-pic.jpg" alt="" />
-    <div class="p-5">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$blog['title']}}</h5>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{$blog['content']}}</p>
-    </div>
-</div>
-{{-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"> --}}
-        {{-- Edit Product link --}}
-        {{-- <a href="/products/{{$product->id}}/edit">
-            <i class="fa-solid fa-pencil mb-3" ></i> Edit
-        </a> --}}
-        {{-- Delete Product link added to Manage Products --}}
-        {{-- <form method="POST" action="/products/{{$product->id}}">
-            @csrf
-            @method('DELETE')
-            <button class="text-red-500"><i class="fa-solid fa-trash mt-3"></i> Delete</button>
-        </form> --}}
-        {{-- <div
-            class="flex flex-col items-center justify-center text-center"
-        >
-            <img
-                class="mb-6 rounded-t-lg"
-                src="/images/nature-pic.jpg"
-                alt=""
-            />
-            <h3 class="text-2xl mb-2">{{$blog['title']}}</h3>
-            <p>
-                {{$blog['content']}}
-            </p>
-
+    </div> --}}
+    <div class="grid gap-4">
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="" alt="">
         </div>
-        <div
-            class="flex flex-col items-center justify-center text-center"
-        >
-            <img
-                class="mb-6 rounded-t-lg"
-                src="/images/nature-pic.jpg"
-                alt=""
-            />
-            <h3 class="text-2xl mb-2">{{$blog['title']}}</h3>
-            <p>
-                {{$blog['content']}}
-            </p>
-
+        <div class="grid grid-cols-5 gap-4">
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
         </div>
+    </div>
+    <div class="grid gap-4">
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="/images/nature-pic.jpg" alt="">
+        </div>
+        <div class="text-2xl font-extrabold">
+            <h1>{{$blog['title']}}</h1>
+        </div>
+        <div>
+            <P>
+                {{$blog['content']}}
+            </P>
+        </div>
+    </div>
+    <div class="grid gap-4">
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="" alt="">
+        </div>
+        <div class="grid grid-cols-5 gap-4">
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="" alt="">
+            </div>
+        </div>
+    </div>
 
-</div> --}}
 @endsection
 </body>
 </html>

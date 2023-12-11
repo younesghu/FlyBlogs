@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-@extends('layout.layout')
+@extends('components.layout')
 
 @section('content')
 
@@ -18,64 +9,16 @@
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{$blog['content']}}</p>
         </div>
     </div> --}}
-    <div class="grid gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="" alt="">
-        </div>
-        <div class="grid grid-cols-5 gap-4">
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-        </div>
-    </div>
-    <div class="grid gap-4">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="/images/nature-pic.jpg" alt="">
-        </div>
-        <div class="text-2xl font-extrabold">
-            <h1>{{$blog['title']}}</h1>
+            <img class="rounded-lg w-full md:w-64 h-auto" src="/images/nature-pic.jpg" alt="Nature Image">
+            <h1 class="text-2xl font-bold mb-2">{{$blog['title']}}</h1>
+            <p class="text-gray-600">{{$blog['content']}}</p>
         </div>
         <div>
-            <P>
-                {{$blog['content']}}
-            </P>
-        </div>
-    </div>
-    <div class="grid gap-4">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="" alt="">
-        </div>
-        <div class="grid grid-cols-5 gap-4">
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="" alt="">
-            </div>
+            comments will appear here!
         </div>
     </div>
 
+
 @endsection
-</body>
-</html>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Models\Blog;
@@ -33,9 +34,13 @@ Route::post('/users/authentificate', [UserController::class, 'authentificate']);
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-// Route::post('/store', [BlogController::class, 'createBlog']);
+// Blog Routes
 
+// Route::post('/store', [BlogController::class, 'createBlog']);
 Route::get('/', [BlogController::class, 'index']);
 Route::get('/create', [BlogController::class, 'create']);
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
 Route::get('/blogs/create', [BlogController::class, 'create']);
+
+// Comments Routes
+Route::post('/blog/{blog}/comments', [CommentController::class, 'store']);

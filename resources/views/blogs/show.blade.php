@@ -16,7 +16,19 @@
             <p class="text-gray-600">{{$blog['content']}}</p>
         </div>
         <div>
-            comments will appear here!
+            {{-- <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
+            <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea> --}}
+            <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-4">
+                <div class="flex items-center">
+                    <img class="w-10 h-10 rounded-full mr-4" src="images/profilepic.jpg" alt="user photo">
+                    <div class="flex-1">
+                        <textarea class="w-full bg-gray-100 rounded-lg p-2 focus:outline-none" rows="3" placeholder="Add a comment..."></textarea>
+                        <div class="flex items-center justify-between mt-2">
+                            <button class="text-sm text-blue-500 font-semibold">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -33,8 +33,8 @@ class BlogController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
-            'content' => 'required',
-            'categories' => 'required'
+            'categories' => 'required',
+            'content' => 'required'
         ]);
         $data['posted_at'] = Carbon::now();
         $data['user_id'] = auth()->id();

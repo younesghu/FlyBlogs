@@ -25,6 +25,16 @@ use App\Models\Blog;
 // Route::post('/authentificate', [UserController::class, 'authentificate']);
 // Route::post('/logout', [UserController::class, 'logout']);
 
+
+// Blog Routes
+
+// Route::post('/store', [BlogController::class, 'createBlog']);
+Route::get('/', [BlogController::class, 'index']);
+Route::get('/blogs/create', [BlogController::class, 'create']);
+Route::post('/blogs', [BlogController::class, 'store']);
+Route::get('/blogs/{blog}', [BlogController::class, 'show']);
+
+
 // User Routes
 // Route::resource('users', UserController::class)
 //     ->only()
@@ -34,13 +44,5 @@ Route::post('/users/authentificate', [UserController::class, 'authentificate']);
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-// Blog Routes
-
-// Route::post('/store', [BlogController::class, 'createBlog']);
-Route::get('/', [BlogController::class, 'index']);
-Route::get('/create', [BlogController::class, 'create']);
-Route::get('/blogs/{blog}', [BlogController::class, 'show']);
-Route::get('/blogs/create', [BlogController::class, 'create']);
-
 // Comments Routes
-Route::post('/blog/{blog}/comments', [CommentController::class, 'store']);
+// Route::post('/blog/{blog}/comments', [CommentController::class, 'store']);

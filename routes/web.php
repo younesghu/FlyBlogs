@@ -33,6 +33,7 @@ Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/create', [BlogController::class, 'create']);
 Route::post('/blogs', [BlogController::class, 'store']);
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
+Route::post('/blogs/{blog}', [CommentController::class, 'store']);
 
 
 // User Routes
@@ -45,4 +46,5 @@ Route::get('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 // Comments Routes
-// Route::post('/blog/{blog}/comments', [CommentController::class, 'store']);
+
+// Route::get('/blogs/{blog}/comments', [CommentController::class, 'show']);

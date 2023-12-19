@@ -12,7 +12,7 @@
                     <div class="flex items-center">
                         <img class="w-10 h-10 rounded-full mr-4" src="images/profilepic.jpg" alt="Avatar of Jonathan Reinink">
                         <div class="text-sm">
-                          <p class="text-gray-900 leading-none">{{$blog->user->name}}</p>
+                          <p class="text-gray-900 leading-none">By: {{$blog->user->name}}</p>
                           {{-- <p class="text-gray-600">{{$blog['posted_at']}}</p> --}}
                         </div>
                     </div>

@@ -36,6 +36,11 @@ class BlogController extends Controller
             'categories' => 'required',
             'content' => 'required'
         ]);
+
+        if($request->hasFile('blog_img')){
+            $data['blog_img'] = $request->file('blog_img')->store('blog_imgs', 'public');
+        }
+
         $data['posted_at'] = Carbon::now();
         $data['user_id'] = auth()->id();
 

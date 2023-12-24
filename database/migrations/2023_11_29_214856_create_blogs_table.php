@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->longText('content');
             $table->string('categories');
-            $table->datetime('posted_at')->nullable();;
+            $table->string('blog_img')->nullable();
+            $table->longText('content');
+            $table->datetime('posted_at')->nullable();
             $table->timestamps();
         });
     }

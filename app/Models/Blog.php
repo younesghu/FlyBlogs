@@ -13,6 +13,7 @@ class Blog extends Model
         'user_id',
         'title',
         'content',
+        'blog_img',
         'categories',
         'posted_at'
     ];

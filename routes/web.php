@@ -33,6 +33,7 @@ Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/create', [BlogController::class, 'create']);
 Route::post('/blogs', [BlogController::class, 'store']);
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
+
 Route::post('/blogs/{blog}', [CommentController::class, 'store']);
 
 

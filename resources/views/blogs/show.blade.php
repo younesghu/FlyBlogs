@@ -11,7 +11,7 @@
     </div> --}}
     <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
         <div>
-            <img class="rounded-lg w-full md:w-64 h-auto" src="/images/nature-pic.jpg" alt="Nature Image">
+            <img class="rounded-lg w-full md:w-64 h-auto" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="">
             <h1 class="text-2xl font-bold mb-2">{{$blog->title}}</h1>
             <p class="text-gray-600">{{$blog->content}}</p>
         </div>

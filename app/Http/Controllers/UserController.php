@@ -13,14 +13,14 @@ class UserController extends Controller
     Register Page
     */
     public function create(Request $request){
-        return view('register');
+        return view('users/register');
     }
 
     /**
      Login Page
     */
     public function login(Request $request){
-        return view('login');
+        return view('users/login');
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
     public function edit()
     {
         $user = auth()->user();
-        return view('users.edit', compact('user'));
+        return view('users.settings', compact('user'));
     }
 
     /**

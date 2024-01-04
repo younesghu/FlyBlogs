@@ -2,7 +2,6 @@
 
 @section('content')
 
-<h1>
-    Hello from user dashboard
-</h1>
+show
+
 @endsection

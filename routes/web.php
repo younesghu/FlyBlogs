@@ -41,7 +41,8 @@ Route::post('/blogs/{blog}', [CommentController::class, 'store']);
 // Route::resource('users', UserController::class)
 //     ->only()
 Route::post('/users', [UserController::class, 'store']);
-Route::get('/settings', [UserController::class, 'edit'])->name('users.settings');
+Route::put('/users/settings', [UserController::class, 'update'])->name('users.update');
+Route::get('/users/settings', [UserController::class, 'edit']);
 
 Route::get('/register', [UserController::class, 'create']);
 Route::post('/users/authentificate', [UserController::class, 'authentificate']);

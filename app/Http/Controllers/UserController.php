@@ -30,7 +30,7 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => ['required', 'min:3', 'max:10', Rule::unique('users', 'name')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required','min:8']
+            'password' => ['required','min:8'],
         ]);
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
@@ -69,15 +69,25 @@ class UserController extends Controller
     public function edit()
     {
         $user = auth()->user();
-        return view('users.settings', compact('user'));
+        return view('/users/settings', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+        $user = auth()->user();
+        $user->update($data);
+
+        // if($request->hasFile('image_url')){
+        //     $data['image_url'] = $request->file('image_url')->store('logos', 'public');
+        // }
+        return redirect('/users/settings');
     }
 
     /**

@@ -33,6 +33,8 @@ Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/create', [BlogController::class, 'create']);
 Route::post('/blogs', [BlogController::class, 'store']);
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
+Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+
 
 Route::post('/blogs/{blog}', [CommentController::class, 'store']);
 Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy']);
@@ -45,6 +47,7 @@ Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'de
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/settings', [UserController::class, 'update'])->name('users.update');
 Route::get('/users/settings', [UserController::class, 'edit']);
+
 
 Route::get('/register', [UserController::class, 'create']);
 Route::post('/users/authentificate', [UserController::class, 'authentificate']);

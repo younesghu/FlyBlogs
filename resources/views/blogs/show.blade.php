@@ -10,6 +10,14 @@
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{$blog['content']}}</p>
         </div>
     </div> --}}
+    <a href="/blogs/{{$blog->id}}/edit">
+        <i class="fa-solid fa-pencil mb-3" ></i> Edit
+    </a>
+    <form method="POST" action="/blogs/{{$blog->id}}">
+        @csrf
+        @method('DELETE')
+        <button class="text-red-500"><i class="fa-solid fa-trash mt-3"></i> Delete</button>
+    </form>
     <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
         <div class="text-center">
             <img class="rounded-lg mx-auto my-auto md:w-64 h-auto" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="">

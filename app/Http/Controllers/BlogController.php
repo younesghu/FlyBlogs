@@ -66,6 +66,9 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
+        if($blog->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
         return view('blogs.edit', ['blog' => $blog]);
     }
 

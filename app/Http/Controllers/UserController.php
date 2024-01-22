@@ -77,16 +77,16 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        $user = auth()->user();
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required'
         ]);
-        $user = auth()->user();
+        if($request->hasFile('user_img')){
+            $data['user_img'] = $request->file('user_img')->store('user_imgs', 'public');
+        }
         $user->update($data);
 
-        // if($request->hasFile('image_url')){
-        //     $data['image_url'] = $request->file('image_url')->store('logos', 'public');
-        // }
         return redirect('/users/settings');
     }
 

@@ -72,9 +72,22 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Blog $blog)
     {
-        //
+        if($blog->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+        $data = $request->validate([
+            'title' => 'required',
+            'categories' => 'required',
+            'content' => 'required'
+        ]);
+        if($request->hasFile('blog_img')){
+            $data['blog_img'] = $request->file('blog_img')->store('blog_imgs', 'public');
+        }
+        $blog->update($data);
+        return redirect("/blogs/{$blog->id}");
+
     }
 
     /**

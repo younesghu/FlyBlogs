@@ -93,8 +93,12 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Blog $blog)
     {
-        //
+        if($blog->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+        $blog->delete();
+        return redirect('/');
     }
 }

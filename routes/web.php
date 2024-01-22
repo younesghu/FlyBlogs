@@ -35,6 +35,8 @@ Route::post('/blogs', [BlogController::class, 'store']);
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
 
 Route::post('/blogs/{blog}', [CommentController::class, 'store']);
+Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy']);
+
 
 
 // User Routes

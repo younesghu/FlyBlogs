@@ -68,8 +68,9 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Blog $blog, Comment $comment)
     {
-        //
+        $comment->delete();
+        return redirect("/blogs/{$blog->id}");
     }
 }

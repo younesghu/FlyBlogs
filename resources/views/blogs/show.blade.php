@@ -28,7 +28,7 @@
             <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-4">
                 @foreach($comments as $comment)
                 <div class="flex items-start mb-4">
-                    <img src="https://source.unsplash.com/40x40/?profile" alt="Profile" class="w-8 h-8 rounded-full mr-3">
+                    <img src="{{$comment->user->user_img ? asset('storage/' . $comment->user->user_img) : asset('images/profilepic.jpg')}}" alt="Profile" class="w-8 h-8 rounded-full mr-3">
                     <div class="flex-1">
                         <div class="flex items-center justify-between mb-2">
                             <h5 class="text-gray-800 font-semibold">{{$comment->user->name}}</h5>

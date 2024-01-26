@@ -3,13 +3,6 @@
 @extends('components.layout')
 
 @section('content')
-    {{-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <img class="rounded-t-lg" src="/images/nature-pic.jpg" alt="" />
-        <div class="p-5">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$blog['title']}}</h5>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{$blog['content']}}</p>
-        </div>
-    </div> --}}
     <a href="/blogs/{{$blog->id}}/edit">
         <i class="fa-solid fa-pencil mb-3" ></i> Edit
     </a>
@@ -62,13 +55,6 @@
                 @endforeach
                 <form method="POST" action="/blogs/{{$blog->id}}">
                     @csrf
-                    {{-- <div class="flex items-start mt-4">
-                        <img src="https://source.unsplash.com/40x40/?profile" alt="Profile" class="w-8 h-8 rounded-full mr-3">
-                        <div class="flex-1">
-                            <textarea placeholder="Add a comment..." class="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"></textarea>
-                            <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">Post</button>
-                        </div>
-                    </div> --}}
                     <div class="flex items-center">
                         <img src="{{$comment->user->user_img ? asset('storage/' . $comment->user->user_img) : asset('images/profilepic.jpg')}}" alt="Profile" class="w-8 h-8 rounded-full mr-3">
                         <div class="flex-1">

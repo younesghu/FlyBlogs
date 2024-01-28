@@ -56,7 +56,7 @@
                 <form method="POST" action="/blogs/{{$blog->id}}">
                     @csrf
                     <div class="flex items-center">
-                        <img src="{{$comment->user->user_img ? asset('storage/' . $comment->user->user_img) : asset('images/profilepic.jpg')}}" alt="Profile" class="w-8 h-8 rounded-full mr-3">
+                        <img src="{{auth()->user()->user_img ? asset('storage/' . auth()->user()->user_img) : asset('images/profilepic.jpg')}}" alt="Profile" class="w-8 h-8 rounded-full mr-3">
                         <div class="flex-1">
                             <textarea name="content" class="w-full bg-gray-100 rounded-lg p-2 focus:outline-none" rows="3" placeholder="Add a comment..."></textarea>
                             <div class="flex items-center justify-between mt-2">

@@ -38,10 +38,8 @@ Route::put('/blogs/{blog}', [BlogController::class, 'update']);
 Route::delete('/blogs/{blog}', [BlogController::class, 'destroy']);
 
 
-
-Route::post('/blogs/{blog}', [CommentController::class, 'store']);
+Route::post('/blogs/{blog}', [CommentController::class, 'store'])->middleware('auth');
 Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy']);
-
 
 
 // User Routes
@@ -54,7 +52,7 @@ Route::get('/users/settings', [UserController::class, 'edit']);
 
 Route::get('/register', [UserController::class, 'create']);
 Route::post('/users/authentificate', [UserController::class, 'authentificate']);
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/logout', [UserController::class, 'logout']);
 
 // Comments Routes

@@ -6,9 +6,6 @@
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Blog App</span>
         </a>
-        {{-- <a href="/blogs/create" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <span class=" text-sm font-semibold whitespace-nowrap dark:text-white">Create Blog</span>
-        </a> --}}
 
         @auth
         {{-- Show this when logged in --}}
@@ -48,10 +45,10 @@
                 <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
                         <a href="/blogs/create" class="flex items-center py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                            <span class="mr-2">Create</span>
                             <svg class="w-4 h-4 transform md:p-0 dark:border-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9.546.5a9.5 9.5 0 1 0 9.5 9.5 9.51 9.51 0 0 0-9.5-9.5ZM13.788 11h-3.242v3.242a1 1 0 1 1-2 0V11H5.304a1 1 0 0 1 0-2h3.242V5.758a1 1 0 0 1 2 0V9h3.242a1 1 0 1 1 0 2Z"/>
                             </svg>
-                            <span class="ml-2">Create</span>
                         </a>
                     </li>
                 </ul>
@@ -105,10 +102,8 @@
 
     <footer class="shadow bg-gray-900">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-            <div class="sm:flex sm:items-center sm:justify-between">
-            </div>
             <hr class="my-6 border-gray-200 sm:mx-auto  lg:my-8" />
-            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
         </div>
     </footer>
 

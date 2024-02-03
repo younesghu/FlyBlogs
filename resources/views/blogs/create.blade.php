@@ -1,6 +1,7 @@
 @extends('components.layout')
 
 @section('content')
+
 <form method="POST" action="/blogs" class="w-full max-w-lg mx-auto m-10" enctype="multipart/form-data">
     @csrf
     <div class="flex flex-wrap -mx-3 mb-6">

@@ -2,14 +2,16 @@
 
 @section('content')
     @auth
-        <a href="/blogs/{{$blog->id}}/edit">
-            <i class="fa-solid fa-pencil mb-3" ></i> Edit
-        </a>
-        <form method="POST" action="/blogs/{{$blog->id}}">
-            @csrf
-            @method('DELETE')
-            <button class="text-red-500"><i class="fa-solid fa-trash mt-3"></i> Delete</button>
-        </form>
+        @if(auth()->user()->id === $blog->user_id)
+            <a href="/blogs/{{$blog->id}}/edit">
+                <i class="fa-solid fa-pencil mb-3" ></i> Edit
+            </a>
+            <form method="POST" action="/blogs/{{$blog->id}}">
+                @csrf
+                @method('DELETE')
+                <button class="text-red-500"><i class="fa-solid fa-trash mt-3"></i> Delete</button>
+            </form>
+        @endif
     @endauth
     <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
         <div class="text-center">

@@ -113,3 +113,24 @@
     background-color: #E0A96D;
     }
 
+    .dropbtn {
+        background-color: transparent;
+        color: #333;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Style the dropdown content (hidden by default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Show the dropdown content when the dropdown button is hovered over */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }

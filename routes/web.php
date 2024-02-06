@@ -30,6 +30,7 @@ use App\Models\Blog;
 
 // Route::post('/store', [BlogController::class, 'createBlog']);
 Route::get('/', [BlogController::class, 'index']);
+Route::get('/blogs/manage', [BlogController::class, 'manage']);
 Route::get('/blogs/create', [BlogController::class, 'create']);
 Route::post('/blogs', [BlogController::class, 'store']);
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);

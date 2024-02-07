@@ -22,11 +22,11 @@
                         </button>
                         <div class="dropdown-content rounded-xl">
                             <a href="/blogs/{{$blog->id}}/comments/{{$comment->id}}/edit" class="block px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('deleteForm').submit();" class="block px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('deleteForm{{$comment->id}}').submit();" class="block px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
                         </div>
                     </div>
 
-                    <form id="deleteForm" action="/blogs/{{$blog->id}}/comments/{{$comment->id}}" method="POST" style="display: none;">
+                    <form id="deleteForm{{$comment->id}}" action="/blogs/{{$blog->id}}/comments/{{$comment->id}}" method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
                     </form>

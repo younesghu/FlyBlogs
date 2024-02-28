@@ -69,8 +69,8 @@ return [
     | ahead and set this to a sensible default for you out of the box.
     |
     */
-
-    'timezone' => 'UTC',
+    // Changed timezone to Europe/Berlin which is aligned with GMT+01:00 so as get the timezones aligned with my machine time localhost and database time
+    'timezone' => 'Europe/Berlin',
 
     /*
     |--------------------------------------------------------------------------

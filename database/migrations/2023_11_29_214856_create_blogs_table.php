@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('categories');
             $table->string('blog_img')->nullable();
             $table->longText('content');
+            $table->datetime('scheduled_at')->nullable();
+            $table->boolean('is_scheduled')->default(false);
             $table->datetime('posted_at')->nullable();
             $table->timestamps();
         });

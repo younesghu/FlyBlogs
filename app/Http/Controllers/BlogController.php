@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -13,9 +14,20 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('blogs.index', [
-            'blogs' => Blog::latest()->filter(request(['search']))->SimplePaginate(6)
-        ]);
+        $blogs = Blog::where('is_scheduled', false) // Only fetch posts that are not scheduled
+                  ->orWhere(function($query) {
+                      $query->where('is_scheduled', true)
+                            ->where('scheduled_at', '<=', now()); // Fetch scheduled posts if scheduled_at is in the past
+                  })
+                  ->get();
+
+                  return view('blogs.index', ['blogs' => Blog::latest() ->where('is_scheduled', false)
+                                                                        ->filter(request(['search']))
+                                                                        ->simplePaginate(9)]);
+
+        // return view('blogs.index', [
+        //     'blogs' => Blog::latest()->filter(request(['search']))->SimplePaginate(6)
+        // ]);
     }
 
     /**
@@ -34,19 +46,38 @@ class BlogController extends Controller
         $data = $request->validate([
             'title' => 'required',
             'categories' => 'required',
-            'content' => 'required'
+            'content' => 'required',
         ]);
 
         if($request->hasFile('blog_img')){
             $data['blog_img'] = $request->file('blog_img')->store('blog_imgs', 'public');
         }
+        if ($request->has('schedule_post')) {
+            // User has opted to schedule the post
+            $scheduledDateTime = Carbon::parse($request->scheduled_at);
 
-        $data['posted_at'] = Carbon::now();
+            // Store the scheduled date and time in the database
+            $data['scheduled_at'] = $scheduledDateTime;
+
+            // Set the post status as scheduled and switch to true
+            $data['is_scheduled'] = true;
+        } else {
+            // Set the post status as published and switch to false
+            $data['is_scheduled'] = false;
+            // User wants to publish the post immediately
+            $data['posted_at'] = now();
+        }
+
+        // Save the post data to the database
         $data['user_id'] = auth()->id();
-
         Blog::create($data);
 
         return redirect('/');
+        // Save the blog post
+        // $blog = DB::transaction(function () use ($data) {
+        //     return Blog::create($data);
+        // });
+
     }
 
     /**

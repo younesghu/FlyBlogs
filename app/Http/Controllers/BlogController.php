@@ -139,7 +139,7 @@ class BlogController extends Controller
     public function manage(){
         try {
             $blogs = auth()->user()->blogs()->get();
-            return view('/blogs/manage', ['blogs' => $blogs]);
+            return view('blogs.manage', ['blogs' => $blogs]);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error fetching user blogs.');
         }

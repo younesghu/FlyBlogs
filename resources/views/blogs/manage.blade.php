@@ -61,7 +61,7 @@
                         <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                         </td>
                         <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white col-span-full">
-                            <p>No Blogs found, go make some</p>
+                            <p>No Blogs found, you can create one <u><a href="create">here</a></u></p>
                         </td>
                         <td class="px-6 py-4"></td>
                         <td class="px-6 py-4"></td>

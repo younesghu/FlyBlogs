@@ -2,6 +2,7 @@
 
 @section('content')
 @include('partials._search')
+
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         @foreach ($blogs as $blog)
             @if (!$blog->is_scheduled || ($blog->is_scheduled && $blog->scheduled_at <= now()))
@@ -33,4 +34,5 @@
     <div class="mt-2 p-2">
         {{$blogs->links()}}
     </div>
+
 @endsection

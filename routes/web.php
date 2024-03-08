@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SocialMediaAccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Models\Blog;
@@ -41,6 +42,10 @@ Route::delete('/blogs/{blog}', [BlogController::class, 'destroy']);
 
 Route::post('/blogs/{blog}', [CommentController::class, 'store'])->middleware('auth');
 Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy']);
+
+// Social Media Accounts Routes
+Route::get('/accounts', [SocialMediaAccountController::class, 'index']);
+
 
 
 // User Routes

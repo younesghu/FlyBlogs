@@ -20,9 +20,9 @@
                         <button class="dropbtn">
                             <i class="fa-solid fa-ellipsis"></i>
                         </button>
-                        <div class="dropdown-content rounded-xl">
-                            <a href="/blogs/{{$blog->id}}/comments/{{$comment->id}}/edit" class="block px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('deleteForm{{$comment->id}}').submit();" class="block px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
+                        <div class="dropdown-content">
+                            <a href="/blogs/{{$blog->id}}/comments/{{$comment->id}}/edit" class="block px-4 py-2 hover:bg-gray-200">Edit</a>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('deleteForm{{$comment->id}}').submit();" class="block px-4 py-2 hover:bg-gray-200">Delete</a>
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
         <div class="flex-1">
             <textarea name="content" class="w-full bg-gray-100 rounded-lg p-2 focus:outline-none" rows="3" placeholder="Add a comment..."></textarea>
             <div class="flex items-center justify-between mt-2">
-                <button type="submit" class="text-sm text-blue-500 font-semibold">Post</button>
+                <button type="submit" class="text-sm text-gray-900 font-bold">Post</button>
             </div>
         </div>
     </div>

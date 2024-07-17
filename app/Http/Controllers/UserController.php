@@ -43,15 +43,16 @@ class UserController extends Controller
     Authentificate User
      */
     public function authentificate(Request $request){
+
         $data = $request->validate([
             'loginname' => 'required',
             'loginpassword' => 'required'
         ]);
 
-    if(auth()->attempt(['name' =>$data['loginname'], 'password' => $data['loginpassword']])) {
-        $request->session()->regenerate();
-    }
-    return redirect('/');
+        if(auth()->attempt(['name' =>$data['loginname'], 'password' => $data['loginpassword']])) {
+            $request->session()->regenerate();
+        }
+        return redirect('/');
     }
 
     /**
@@ -59,6 +60,7 @@ class UserController extends Controller
      */
 
      public function logout(){
+
         auth()->logout();
         return redirect('/');
     }

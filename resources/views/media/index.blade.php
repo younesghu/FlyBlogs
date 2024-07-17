@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
         <div>
             <button class="bg-gray-300 border mt-2 ml-5 border-gray-300 hover:bg-gray-100 rounded-lg px-3 py-1.5" type="button">
-                Connect to Social Account
+                <a href="">Connect to Social Account</a>
             </button>
         </div>
     </div>

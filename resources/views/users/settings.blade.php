@@ -13,15 +13,15 @@
                         @csrf
                             <div class="flex items-center">
                                 <img class="w-16 h-16 rounded-full" src="{{$user->user_img ? asset('storage/' . $user->user_img) : asset('images/profilepic.jpg')}}" alt="">
-                                <input type="file" class="border border-gray-500 ml-5 p-2 w-full" type="file" name="user_img"/>
+                                <input type="file" class="border border-gray-700 bg-white ml-5 p-2 w-full" type="file" name="user_img"/>
                              </div>
                             <div>
                                 <label for="name" class="block mb-2 text-sm font-bold text-gray-900">Your Username</label>
-                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5 focus:outline-none" placeholder="name" value="{{$user->name}}">
+                                <input type="text" name="name" id="name" class="bg-white border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5 focus:outline-none" placeholder="name" value="{{$user->name}}">
                             </div>
                             <div>
                                 <label for="email" class="block mb-2 text-sm font-bold text-gray-900">Your email</label>
-                                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5" placeholder="name@company.com" value="{{$user->email}}">
+                                <input type="email" name="email" id="email" class="bg-white border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5" placeholder="name@company.com" value="{{$user->email}}">
                             </div>
                             <button type="submit" class="w-full bg-gray-200 text-gray-900 font-medium text-sm px-5 py-2.5 text-center">Save Changes</button>
                     </form>

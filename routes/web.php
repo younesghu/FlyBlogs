@@ -41,7 +41,9 @@ Route::delete('/blogs/{blog}', [BlogController::class, 'destroy']);
 
 
 Route::post('/blogs/{blog}', [CommentController::class, 'store'])->middleware('auth');
-Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy']);
+
+Route::put('/blogs/{blog}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 // Social Media Accounts Routes
 Route::get('/accounts', [SocialMediaAccountController::class, 'index']);

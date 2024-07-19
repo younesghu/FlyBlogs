@@ -36,4 +36,5 @@
         {{$blogs->links()}}
     </div>
 
+@include('partials._footer')
 @endsection

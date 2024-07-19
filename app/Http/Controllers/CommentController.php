@@ -41,6 +41,7 @@ class CommentController extends Controller
 
     }
 
+
     /**
      * Display the specified resource.
      */
@@ -60,9 +61,16 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Blog $blog, Comment $comment)
     {
-        //
+        $data = $request->validate([
+            'content' => 'required|min:3|max:250',
+        ]);
+
+        $commentId = Comment::findOrFail($comment->id);
+        $commentId->update($data);
+
+        return redirect("/blogs/{$blog->id}");
     }
 
     /**

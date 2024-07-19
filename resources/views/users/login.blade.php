@@ -21,11 +21,11 @@
                     @csrf
                     <div>
                         <label for="loginname" class="block mb-2 text-sm font-medium text-gray-900">Your Name</label>
-                        <input type="text" name="loginname" id="loginname" class="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5 focus:outline-none" placeholder="name" required="">
+                        <input type="text" name="loginname" id="loginname" class="bg-white border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5 focus:outline-none" placeholder="name" required="">
                     </div>
                     <div>
                         <label for="loginpassword" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                        <input type="password" name="loginpassword" id="loginpassword" placeholder="••••••••" class="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5 focus:outline-none" required="">
+                        <input type="password" name="loginpassword" id="loginpassword" placeholder="••••••••" class="bg-white border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5 focus:outline-none" required="">
                     </div>
                     <button type="submit" class="w-full bg-gray-200 text-gray-900 font-medium text-sm px-5 py-2.5 text-center">Log in</button>
                     <p class="text-sm font-light text-gray-500">

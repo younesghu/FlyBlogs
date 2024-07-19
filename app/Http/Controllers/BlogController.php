@@ -22,7 +22,7 @@ class BlogController extends Controller
                   ->get();
 
                   return view('blogs.index', ['blogs' => Blog::latest() ->where('is_scheduled', false)
-                                                                        ->filter(request(['search']))
+                                                                        ->filter(request(['category','search']))
                                                                         ->simplePaginate(9)]);
 
         // return view('blogs.index', [
@@ -85,10 +85,14 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        $comments = $blog->comments()->get();
+        $comments = $blog->comments()->orderBy('created_at', 'desc')->get();
+        $wordCount = str_word_count(strip_tags($blog->content));
+        $readingTime = ceil($wordCount / 180); // Assuming 180 words per minute
+
         return view('blogs.show', [
             'blog' => $blog,
-            'comments' => $comments
+            'comments' => $comments,
+            'readingTime' => $readingTime
         ]);
     }
 

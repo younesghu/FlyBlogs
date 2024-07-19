@@ -39,7 +39,7 @@
                         <td class="px-6 py-4 max-w-10 text-gray-600">
                             <p class="line-clamp-4">{{$blog->content}}</p>
                         </td>
-                        <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                        <td class="px-6 py-4 font-semibold text-gray-900">
                             0
                         </td>
                         <td class="px-6 py-4">

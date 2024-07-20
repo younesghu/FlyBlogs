@@ -20,8 +20,8 @@ class BlogFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title' => $this->faker->sentence(),
-            'content' => $this->faker->paragraph(3),
-            'categories' => 'nature'
+            'content' => $this->faker->paragraph(100),
+            'categories' => 'nature, summer, fun'
         ];
     }
 }

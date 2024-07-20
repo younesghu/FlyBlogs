@@ -1,13 +1,14 @@
 @extends('components.layout')
 
 @section('content')
+<h1 class="text-center text-5xl mx-auto lg:w-3/4 font-bold">Blog</h1>
 @include('partials._search')
-    <div class="flex justify-center px-6 py-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-6 mx-6">
+    <div class="flex justify-center py-6">
+        <div class="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-x-6 gap-y-6">
             @foreach ($blogs as $blog)
                 @if (!$blog->is_scheduled || ($blog->is_scheduled && $blog->scheduled_at <= now()))
                     <a href="/blogs/{{$blog->id}}" class="flex flex-col items-center border border-gray-200 rounded shadow md:flex-row md:max-w-xl bg-gray-50 hover:bg-gray-100">
-                        <img class="w-full h-96 md:h-auto md:w-48 rounded-sm" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="">
+                        <img class="w-full h-full md:w-48 rounded-sm" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="">
                         <div class="flex flex-col justify-between p-4 leading-normal">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{$blog->title}}</h5>
 
@@ -36,5 +37,4 @@
         {{$blogs->links()}}
     </div>
 
-@include('partials._footer')
 @endsection

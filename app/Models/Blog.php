@@ -16,6 +16,7 @@ class Blog extends Model
         'content',
         'blog_img',
         'categories',
+        'likes',
         'scheduled_at',
         'is_scheduled',
         'posted_at'

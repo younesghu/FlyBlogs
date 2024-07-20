@@ -20,14 +20,9 @@ class BlogController extends Controller
                             ->where('scheduled_at', '<=', now()); // Fetch scheduled posts if scheduled_at is in the past
                   })
                   ->get();
-
                   return view('blogs.index', ['blogs' => Blog::latest() ->where('is_scheduled', false)
                                                                         ->filter(request(['category','search']))
-                                                                        ->simplePaginate(9)]);
-
-        // return view('blogs.index', [
-        //     'blogs' => Blog::latest()->filter(request(['search']))->SimplePaginate(6)
-        // ]);
+                                                                        ->Paginate(6)]);
     }
 
     /**
@@ -78,6 +73,14 @@ class BlogController extends Controller
         //     return Blog::create($data);
         // });
 
+    }
+    public function like(Request $request, $id)
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->increment('likes');
+        $blog->save();
+
+        return response()->json(['likes' => $blog->likes]);
     }
 
     /**

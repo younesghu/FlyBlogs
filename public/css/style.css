@@ -141,3 +141,7 @@
         overflow: hidden;
         -webkit-line-clamp: 4; /* Number of lines to display */
     }
+
+    .container-lg{
+        max-width: 1400px;
+    }

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'password' => 'younesyounes',
         ]);
         \App\Models\User::factory(1)->create();
-        Blog::factory(9)->create(['user_id' => 1]);
+        Blog::factory(12)->create(['user_id' => 1]);
 
 
 

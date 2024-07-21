@@ -40,11 +40,11 @@
                             </div>
                         </div>
                         @if(auth()->user()->id == $comment->user_id)
-                            <div id="edit-comment-{{ $comment->id }}" class="mt-4" style="display: none;">
+                            <div id="edit-comment-{{ $comment->id }}" class="w-3/4 mt-4" style="display: none;">
                                 <form action="{{ route('comments.update', ['blog' => $blog->id, 'comment' => $comment->id]) }}" method="POST" class="bg-gray-100 p-4 rounded">
                                     @csrf
                                     @method('PUT')
-                                    <textarea name="content" rows="4" class="p-2 bg-white border border-gray-200 focus:outline-none" placeholder="">{{ $comment->content }}</textarea>
+                                    <textarea name="content" rows="3" class="w-full p-2 bg-white border border-gray-100 focus:outline-none" placeholder="">{{ $comment->content }}</textarea>
                                     <div class="flex justify-end mt-2">
                                         <button type="button" onclick="cancelEdit({{ $comment->id }});" class="mr-2 px-4 py-2 bg-gray-50 text-xs text-gray-600 focus:outline-none">Cancel</button>
                                         <button type="submit" class="px-4 py-2 bg-gray-300 text-xs text-gray-900 focus:outline-none">Update </button>

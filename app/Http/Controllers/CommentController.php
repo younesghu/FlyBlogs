@@ -63,6 +63,9 @@ class CommentController extends Controller
      */
     public function update(Request $request, Blog $blog, Comment $comment)
     {
+        if (auth()->user()->id !== $comment->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
         $data = $request->validate([
             'content' => 'required|min:3|max:250',
         ]);
@@ -78,6 +81,9 @@ class CommentController extends Controller
      */
     public function destroy(Blog $blog, Comment $comment)
     {
+        if (auth()->user()->id !== $comment->user_id && auth()->user()->id !== $blog->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
         $comment->delete();
         return redirect("/blogs/{$blog->id}");
     }

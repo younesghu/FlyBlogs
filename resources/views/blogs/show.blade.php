@@ -14,11 +14,14 @@
                 </form>
             @endif
         @endauth --}}
-            <div class="my-10 text-center">
+            <div class="text-center">
+                {{-- Blog Categories --}}
                 <div class="mb-4">
                     <x-blog-categories :categoriesCsv="$blog->categories" />
                 </div>
+                {{-- Blog Title --}}
                 <h1 class="text-5xl mx-auto lg:w-3/4 font-bold mb-2">{{$blog->title}}</h1>
+                {{-- Blog Owner div; image, Name, CreatedTime & ReadingTime --}}
                 <div class="flex justify-center items-center space-x-4 p-4 rounded-lg">
                     <img src="{{ optional($blog->user)->user_img ? asset('storage/' . optional($blog->user)->user_img) : asset('images/profilepic.jpg') }}" alt="Profile Picture" class="w-12 h-12 rounded-full">
                     <div>
@@ -26,6 +29,7 @@
                         <div class="text-gray-500">{{$blog->created_at->format('M d, Y')}} &#183; {{$readingTime}} min read</div>
                     </div>
                 </div>
+                {{-- Blog Image --}}
                 <img class="rounded-lg mx-auto my-auto w-full max-w-3xl h-full" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="">
                 <p class="my-8 text-xl text-gray-700 w-3/4 mx-auto text-left leading-relaxed">{{$blog->content}}</p>
 
@@ -39,8 +43,9 @@
                         Like <i class="fa fa-heart" aria-hidden="true"></i>
                     </button>
                 </div>
-
             </div>
+
+            {{-- Comments Section --}}
             <div class="">
                 <div class="w-3/4 mx-auto rounded-lg border border-gray-200 p-4">
                     @include('blogs.comments', ['comments' => $comments, 'blog' => $blog])

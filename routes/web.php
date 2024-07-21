@@ -45,7 +45,8 @@ Route::post('/blogs/{blog}', [CommentController::class, 'store'])->middleware('a
 Route::put('/blogs/{blog}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
-Route::post('/blogs/{blog}/like', [BlogController::class, 'like'])->name('blogs.like');
+Route::post('/blogs/{blog}/like', [BlogController::class, 'like']);
+Route::post('/blogs/{blog}/unlike', [BlogController::class, 'unlike']);
 
 // Social Media Accounts Routes
 Route::get('/accounts', [SocialMediaAccountController::class, 'index']);

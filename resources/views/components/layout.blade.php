@@ -36,7 +36,7 @@
                     <li>
                     <form action="/logout" method="POST">
                         @csrf
-                        <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Sign out</button>
+                        <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Log out</button>
                     </form>
                     </li>
                 </ul>
@@ -65,13 +65,13 @@
                 <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     {{-- text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 --}}
                     <a href="/register">
-                        <button type="button" class="px-3 py-2 mr-2 text-xs font-medium text-center text-white bg-gray-600 rounded-md hover:bg-gray-500">
+                        <button type="button" class="px-3 py-2 mr-2 text-xs font-medium text-center text-white bg-gray-600 rounded-sm hover:bg-gray-500">
                             Sign up
                         </button>
                     </a>
 
                     <a href="/login">
-                        <button type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-gray-600 rounded-md hover:bg-gray-500">
+                        <button type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-gray-600 rounded-sm hover:bg-gray-500">
                             Log in
                         </button>
                     </a>

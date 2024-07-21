@@ -28,15 +28,18 @@
                 </div>
                 <img class="rounded-lg mx-auto my-auto w-full max-w-3xl h-full" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="">
                 <p class="my-8 text-xl text-gray-700 w-3/4 mx-auto text-left leading-relaxed">{{$blog->content}}</p>
+
+                {{-- Like Blog --}}
                 <div class="flex items-center justify-center space-x-4">
                     <div id="like-count-container" class="flex items-center space-x-2">
                         <i class="fa fa-heart text-red-500"></i>
-                        <span id="like-count">{{ $blog->likes }}</span>
+                        <span id="like-count">{{ $blog->likes()->count() }}</span>
                     </div>
-                    <button id="like-btn" class="text-xl text-red-500" onclick="likePost({{ $blog->id }})">
+                    <button id="like-btn" class="text-xl text-red-500" data-liked="{{ auth()->user()->hasLiked($blog) ? 'true' : 'false' }}" onclick="toggleLike({{ $blog->id }})">
                         Like <i class="fa fa-heart" aria-hidden="true"></i>
                     </button>
                 </div>
+
             </div>
             <div class="">
                 <div class="w-3/4 mx-auto rounded-lg border border-gray-200 p-4">
@@ -46,9 +49,13 @@
         </div>
     </section>
 @endsection
+
 <script>
-    function likePost(blogId) {
-        fetch(`/blogs/${blogId}/like`, {
+    function toggleLike(blogId) {
+        const likeBtn = document.getElementById('like-btn');
+        const isLiked = likeBtn.getAttribute('data-liked') === 'true';
+
+        fetch(`/blogs/${blogId}/${isLiked ? 'unlike' : 'like'}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -66,6 +73,8 @@
             } else {
                 likeCountContainer.style.display = 'none';
             }
+
+            likeBtn.setAttribute('data-liked', data.isLikedByUser ? 'true' : 'false');
         })
         .catch(error => console.error('Error:', error));
     }

@@ -54,4 +54,23 @@ class User extends Authenticatable
     {
         return $this->hasMany(SocialMediaAccount::class);
     }
+    public function likes()
+    {
+        return $this->belongsToMany(Blog::class, 'likes');
+    }
+
+    public function like(Blog $blog)
+    {
+        return $this->likes()->attach($blog);
+    }
+
+    public function unlike(Blog $blog)
+    {
+        return $this->likes()->detach($blog);
+    }
+
+    public function hasLiked(Blog $blog)
+    {
+        return $this->likes()->where('blog_id', $blog->id)->exists();
+    }
 }

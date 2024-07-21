@@ -74,13 +74,32 @@ class BlogController extends Controller
         // });
 
     }
-    public function like(Request $request, $id)
+    public function like(Blog $blog)
     {
-        $blog = Blog::findOrFail($id);
-        $blog->increment('likes');
-        $blog->save();
+        $user = auth()->user();
 
-        return response()->json(['likes' => $blog->likes]);
+        if (!$user->hasLiked($blog)) {
+            $user->like($blog);
+        }
+
+        return response()->json([
+            'likes' => $blog->likes()->count(),
+            'isLikedByUser' => $user->hasLiked($blog),
+        ]);
+    }
+
+public function unlike(Blog $blog)
+    {
+        $user = auth()->user();
+
+        if ($user->hasLiked($blog)) {
+            $user->unlike($blog);
+        }
+
+        return response()->json([
+            'likes' => $blog->likes()->count(),
+            'isLikedByUser' => $user->hasLiked($blog),
+        ]);
     }
 
     /**

@@ -16,7 +16,7 @@
                                 <input type="text" name="name" id="name" class="bg-white border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5 focus:outline-none" placeholder="name" required="">
                             </div>
                             <div>
-                                <label for="email" class="bblock mb-2 text-sm font-medium text-gray-900">Your email</label>
+                                <label for="email" class="bblock mb-2 text-sm font-medium text-gray-900">Your Email</label>
                                 <input type="email" name="email" id="email" class="bg-white border border-gray-500 text-gray-900 sm:text-sm block w-full p-2.5 focus:outline-none" placeholder="name@company.com" required="">
                             </div>
                             <div>

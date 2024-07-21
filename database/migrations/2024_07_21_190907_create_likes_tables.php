@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasColumn('blogs', 'likes')) {
-            Schema::table('blogs', function (Blueprint $table) {
-                $table->unsignedInteger('likes')->default(0);
-            });
-        }
+        Schema::create('likes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('blog_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->dropColumn('likes');
-        });
+        Schema::dropIfExists('likes');
     }
 };

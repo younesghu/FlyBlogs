@@ -40,4 +40,8 @@ class Blog extends Model
                 ->orWhere('categories', 'like', '%' .request('search').'%');
             }
     }
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
 }

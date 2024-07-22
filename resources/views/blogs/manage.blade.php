@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="relative overflow-x-auto shadow-md">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-16 py-3">
@@ -31,7 +31,9 @@
                     @foreach ($blogs as $blog)
                     <tr class="bg-white border-b hover:bg-gray-100">
                         <td class="p-4">
-                            <img src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="" class="w-16 md:w-32 max-w-full max-h-full" alt="Apple Watch">
+                            <a href="/blogs/{{$blog->id}}">
+                                <img src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/blogimg.jpg')}}" alt="" class="w-16 md:w-32 max-w-full max-h-full" alt="">
+                            </a>
                         </td>
                         <td class="px-6 py-4 font-semibold text-gray-900">
                             {{$blog->title}}
@@ -40,7 +42,7 @@
                             <p class="line-clamp-4">{{$blog->content}}</p>
                         </td>
                         <td class="px-6 py-4 font-semibold text-gray-900">
-                            0
+                            {{$blog->likes()->count()}}
                         </td>
                         <td class="px-6 py-4">
                             <a href="/blogs/{{$blog->id}}/edit" class="font-medium text-blue-600 hover:underline">Edit</a>

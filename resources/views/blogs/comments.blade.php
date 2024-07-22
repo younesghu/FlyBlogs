@@ -6,9 +6,9 @@
         @csrf
         <div class="flex items-center">
             @auth
-                <img src="{{ auth()->user()->user_img ? asset('storage/' . auth()->user()->user_img) : asset('images/profilepic.jpg') }}" alt="Profile" class="w-8 h-8 rounded-full mr-3">
+                <img src="{{ auth()->user()->user_img ? asset('storage/' . auth()->user()->user_img) : asset('images/img.webp') }}" alt="Profile" class="w-8 h-8 rounded-full mr-3">
             @else
-                <img src="{{ asset('images/profilepic.jpg') }}" alt="Default" class="w-8 h-8 rounded-full mr-3">
+                <img src="{{ asset('images/img.webp') }}" alt="Default" class="w-8 h-8 rounded-full mr-3">
             @endauth
             <div class="flex-1">
                 <textarea name="content" class="w-full bg-gray-100 rounded p-2 text resize-none focus:outline-none" rows="3" placeholder="Add a comment..."></textarea>
@@ -21,7 +21,7 @@
 
     @foreach($comments as $comment)
         <div class="flex items-start">
-            <img src="{{ optional($comment->user)->user_img ? asset('storage/' . optional($comment->user)->user_img) : asset('images/profilepic.jpg') }}" alt="Profile" class="w-8 h-8 rounded-full mr-3">
+            <img src="{{ optional($comment->user)->user_img ? asset('storage/' . optional($comment->user)->user_img) : asset('images/img.webp') }}" alt="Profile" class="w-8 h-8 rounded-full mr-3">
             <div class="flex-1">
                 <div class="flex items-center justify-between mb-2">
                     <h5 class="text-gray-800 font-semibold">{{ optional($comment->user)->name ?? 'Anonymous' }}</h5>

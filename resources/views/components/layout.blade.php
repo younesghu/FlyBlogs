@@ -6,16 +6,15 @@
         <nav class="bg-gray-100">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="" class="h-8" alt="LOGO" />
+                <img src="../images/navimage.png" class="h-8" alt="LOGO"/>
                 <span class="self-center text-2xl hover:text-gray-500 font-semibold whitespace-nowrap">Blog App</span>
             </a>
-
             @auth
             {{-- Show this when logged in --}}
             <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <button type="button" class="flex text-sm bg-gray-500 rounded-full md:me-0" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" src="{{auth()->user()->user_img ? asset('storage/' . auth()->user()->user_img) : asset('images/profilepic.jpg')}}" alt="user photo">
+                <img class="w-8 h-8 rounded-full" src="{{auth()->user()->user_img ? asset('storage/' . auth()->user()->user_img) : asset('images/img.webp')}}" alt="user photo">
                 </button>
                 <!-- Dropdown menu -->
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow" id="user-dropdown">

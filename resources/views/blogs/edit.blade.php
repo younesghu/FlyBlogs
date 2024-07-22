@@ -27,7 +27,7 @@
                 Blog image
             </label>
                 <input class="appearance-none block w-full bg-gray-50 text-gray-900 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight" id="grid-first-name" type="file" name="blog_img" placeholder="">
-                <img src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="">
+                <img src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/blogimg.jpg')}}" alt="">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-2">

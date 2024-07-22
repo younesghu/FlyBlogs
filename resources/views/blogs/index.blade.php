@@ -8,7 +8,7 @@
             @foreach ($blogs as $blog)
                 @if (!$blog->is_scheduled || ($blog->is_scheduled && $blog->scheduled_at <= now()))
                     <a href="/blogs/{{$blog->id}}" class="flex flex-col items-center border border-gray-200 rounded shadow md:flex-row md:max-w-xl bg-gray-50 hover:bg-gray-100">
-                        <img class="w-full h-full md:w-48 rounded-sm" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/nature-pic.jpg')}}" alt="">
+                        <img class="w-full h-full md:w-48 rounded-sm" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/blogimg.jpg')}}" alt="">
                         <div class="flex flex-col justify-between p-4 leading-normal">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{$blog->title}}</h5>
 
@@ -22,7 +22,7 @@
                             <p class="mb-3 font-normal text-gray-500">{{$limitedContent}}</p>
 
                             <div class="flex items-center">
-                                <img src="{{ $blog->user->user_img ? asset('storage/' . $blog->user->user_img) : asset('images/profilepic.jpg') }}" alt="User Image" class="w-8 h-8 rounded-full mr-3">
+                                <img src="{{ $blog->user->user_img ? asset('storage/' . $blog->user->user_img) : asset('images/img.webp') }}" alt="User Image" class="w-8 h-8 rounded-full mr-3">
                                 <div class="text-sm">
                                     <p class="font-semibold text-gray-900 leading-none">By: {{$blog->user->name}}</p>
                                 </div>

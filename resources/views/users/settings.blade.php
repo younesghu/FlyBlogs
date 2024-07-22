@@ -15,7 +15,7 @@
                         <!-- Image that will trigger the file input -->
                         <label for="user_img" class="block mb-2 text-sm font-bold text-gray-900">Change your picture</label>
                         <img id="profile-img" class="mx-auto w-16 h-16 rounded-full hover:border-2 hover:border-gray-300"
-                            src="{{ $user->user_img ? asset('storage/' . $user->user_img) : asset('images/profilepic.jpg') }}"
+                            src="{{ $user->user_img ? asset('storage/' . $user->user_img) : asset('images/img.webp') }}"
                             alt="Profile Image">
                         <!-- Hidden file input -->
                         <input id="file-input" type="file" class="border border-gray-700 bg-white ml-5 p-2 w-full hidden" name="user_img"/>

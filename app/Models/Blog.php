@@ -31,9 +31,9 @@ class Blog extends Model
     }
 
     public function scopeFilter($query, array $filters){
-    //     if($filters['category'] ?? false){
-    //         $query->where('categories', 'like', '%' .request('category').'%');
-    //     }
+        if($filters['category'] ?? false){
+            $query->where('categories', 'like', '%' .request('category').'%');
+        }
         if($filters['search'] ?? false){
             $query->where('title', 'like', '%' .request('search').'%')
                 ->orWhere('content', 'like', '%' .request('search').'%')

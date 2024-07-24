@@ -2,6 +2,20 @@
 
 @section('content')
 <h1 class="text-center text-5xl mx-auto lg:w-3/4 font-bold">Blog</h1>
+<div class="mt-8 text-center">
+    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-900 mr-2 mb-2">
+        <a href="/">All</a>
+    </span>
+    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
+        <a href="/?category=technology">Technology</a>
+    </span>
+    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
+        <a href="/?category=lifestyle">Lifestyle</a>
+    </span>
+    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
+        <a href="/?category=travel">Travel</a>
+    </span>
+</div>
 @include('partials._search')
     <div class="flex justify-center py-6">
         <div class="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-x-6 gap-y-6">

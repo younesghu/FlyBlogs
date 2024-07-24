@@ -6,7 +6,7 @@
         <nav class="bg-gray-100">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="../images/navimage.png" class="h-8" alt="LOGO"/>
+                <img src="../images/navimg.png" class="h-8" alt="LOGO"/>
                 <span class="self-center text-2xl hover:text-gray-500 font-semibold whitespace-nowrap">Blog App</span>
             </a>
             @auth

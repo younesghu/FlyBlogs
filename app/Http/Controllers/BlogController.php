@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use App\Notifications\BlogLiked;
 use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
@@ -80,6 +81,8 @@ class BlogController extends Controller
 
         if (!$user->hasLiked($blog)) {
             $user->like($blog);
+            $blog->user->notify(new BlogLiked($blog, $user));
+
         }
 
         return response()->json([
@@ -146,6 +149,7 @@ public function unlike(Blog $blog)
             $data['blog_img'] = $request->file('blog_img')->store('blog_imgs', 'public');
         }
         $blog->update($data);
+
         return redirect("/blogs/{$blog->id}");
 
     }

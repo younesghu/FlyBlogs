@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Notifications\BlogCommented;
 
 class CommentController extends Controller
 {
@@ -34,8 +35,11 @@ class CommentController extends Controller
         ]);
         $data['user_id'] = auth()->id();
         $data['blog_id'] = $blog->id;
-        // dd($data);
-        Comment::create($data);
+
+        $comment = Comment::create($data);
+
+        $commentUser = auth()->user();
+        $blog->user->notify(new BlogCommented($blog, $comment, $commentUser));
 
         return redirect("/blogs/{$blog->id}");
 

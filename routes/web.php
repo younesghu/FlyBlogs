@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\SocialMediaAccountController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SocialMediaAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,9 @@ Route::post('/blogs/{blog}/unlike', [BlogController::class, 'unlike']);
 // Social Media Accounts Routes
 Route::get('/accounts', [SocialMediaAccountController::class, 'index']);
 
+// Notifications
 
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 
 // User Routes
 // Route::resource('users', UserController::class)

@@ -59,6 +59,20 @@
                     </ul>
                 </div>
             </div>
+            <div class="relative">
+                <button id="notificationButton" class="relative z-10 block p-2 bg-gray-500 text-white rounded-full focus:outline-none">
+                    Notifications <span class="badge badge-light">{{ auth()->user()->unreadNotifications->count() }}</span>
+                </button>
+                <div id="notificationMenu" class="hidden absolute right-0 mt-2 w-64 bg-white border border-gray-300 rounded shadow-lg">
+                    @foreach(auth()->user()->unreadNotifications as $notification)
+                    <a href="/blogs/{{ $notification->data['blog_id'] }}">
+                        <div class="p-4 border-b border-gray-300 hover:bg-gray-200">
+                            {!! $notification->data['message'] !!}
+                        </div>
+                    <a>
+                    @endforeach
+                </div>
+            </div>
 
             @else
                 <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -103,5 +117,15 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <script>
+         document.getElementById('notificationButton').addEventListener('click', function() {
+        var menu = document.getElementById('notificationMenu');
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+        } else {
+            menu.classList.add('hidden');
+        }
+    });
+    </script>
 </body>
 </html>

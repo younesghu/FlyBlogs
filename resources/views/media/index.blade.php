@@ -6,11 +6,18 @@
     <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white">
         <div>
             <button class="bg-gray-200 border mt-2 ml-5 border-gray-300 hover:bg-gray-50 rounded-sm px-3 py-1.5" type="button">
-                <a href="">Connect a Social Account</a>
+                <a href="{{ url('auth/twitter') }}">Connect a Social Account</a>
             </button>
         </div>
     </div>
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+    <h1>Media Page</h1>
+    @if(session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
+    @if(session('error'))
+        <p style="color: red;">{{ session('error') }}</p>
+    @endif
+    {{-- <table class="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3">
@@ -43,7 +50,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> --}}
 </div>
 
 

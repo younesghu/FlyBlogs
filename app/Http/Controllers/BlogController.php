@@ -6,10 +6,19 @@ use Carbon\Carbon;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Notifications\BlogLiked;
+use App\Services\TwitterService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
+    protected $twitterService;
+
+    public function __construct(TwitterService $twitterService)
+    {
+        $this->twitterService = $twitterService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -64,6 +73,12 @@ class BlogController extends Controller
             $data['posted_at'] = now();
         }
 
+        // Post to twitter if linked
+        $user = Auth::user();
+        if ($user->twitter_token && $user->twitter_token_secret) {
+            $this->twitterService->postTweet($user, $request->title . ' ' . $request->url());
+        }
+
         // Save the post data to the database
         $data['user_id'] = auth()->id();
         Blog::create($data);
@@ -73,8 +88,8 @@ class BlogController extends Controller
         // $blog = DB::transaction(function () use ($data) {
         //     return Blog::create($data);
         // });
-
     }
+
     public function like(Blog $blog)
     {
         $user = auth()->user();
@@ -91,7 +106,7 @@ class BlogController extends Controller
         ]);
     }
 
-public function unlike(Blog $blog)
+    public function unlike(Blog $blog)
     {
         $user = auth()->user();
 
@@ -151,7 +166,6 @@ public function unlike(Blog $blog)
         $blog->update($data);
 
         return redirect("/blogs/{$blog->id}");
-
     }
 
     /**
@@ -174,4 +188,5 @@ public function unlike(Blog $blog)
             return redirect()->back()->with('error', 'Error fetching user blogs.');
         }
     }
+
 }

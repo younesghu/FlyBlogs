@@ -8,40 +8,38 @@ use Laravel\Socialite\Facades\Socialite;
 
 class TwitterController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function redirectToTwitter()
     {
-        try {
-            Log::info('Redirecting to Twitter for authentication');
-            $redirect = Socialite::driver('twitter')->redirect();
-            Log::info('Redirect URL: ' . $redirect->getTargetUrl());
-            return $redirect;
-        } catch (\Exception $e) {
-            Log::error('Error redirecting to Twitter: ' . $e->getMessage());
-            return redirect()->route('media.index')->with('error', 'Failed to redirect to Twitter.');
-        }
+        return Socialite::driver('twitter')->redirect();
     }
 
     public function handleTwitterCallback()
     {
         try {
-            Log::info('Handling Twitter callback');
             $twitterUser = Socialite::driver('twitter')->user();
-            Log::info('Twitter user retrieved', ['user' => $twitterUser]);
-
             $user = Auth::user();
+
+            if (!$user) {
+                return redirect()->route('login')->with('error', 'User not authenticated');
+            }
+
+            // Log Twitter user details for debugging
+            Log::info('Twitter User:', [
+                'id' => $twitterUser->id,
+                'nickname' => $twitterUser->nickname,
+                'name' => $twitterUser->name,
+                'email' => $twitterUser->email,
+                'token' => $twitterUser->token,
+                'tokenSecret' => $twitterUser->tokenSecret,
+            ]);
+
             $user->twitter_token = $twitterUser->token;
             $user->twitter_token_secret = $twitterUser->tokenSecret;
             $user->save();
 
-            Log::info('Twitter account linked successfully for user', ['user_id' => $user->id]);
-
             return redirect()->route('media.index')->with('success', 'Twitter account linked successfully!');
         } catch (\Exception $e) {
-            Log::error('Error handling Twitter callback: ' . $e->getMessage());
+            Log::error('Twitter OAuth error:', ['error' => $e->getMessage()]);
             return redirect()->route('media.index')->with('error', 'Failed to authenticate with Twitter.');
         }
     }

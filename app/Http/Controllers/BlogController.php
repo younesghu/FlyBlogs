@@ -9,6 +9,7 @@ use App\Notifications\BlogLiked;
 use App\Services\TwitterService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 class BlogController extends Controller
 {
@@ -73,15 +74,23 @@ class BlogController extends Controller
             $data['posted_at'] = now();
         }
 
-        // Post to twitter if linked
-        $user = Auth::user();
-        if ($user->twitter_token && $user->twitter_token_secret) {
-            $this->twitterService->postTweet($user, $request->title . ' ' . $request->url());
-        }
-
         // Save the post data to the database
         $data['user_id'] = auth()->id();
-        Blog::create($data);
+        $blog = Blog::create($data);
+
+        // Post to twitter if linked
+        $user = Auth::user();
+
+        if ($user->twitter_token && $user->twitter_token_secret) {
+            $twitter = new TwitterOAuth(
+                env('TWITTER_CLIENT_ID'),
+                env('TWITTER_CLIENT_SECRET'),
+                $user->twitter_token,
+                $user->twitter_token_secret
+            );
+
+            $twitter->post("statuses/update", ["status" => $blog->title . ' ' . $blog->content]);
+        }
 
         return redirect('/');
         // Save the blog post

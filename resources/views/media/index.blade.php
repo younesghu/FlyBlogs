@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white">
         <div>
             <button class="bg-gray-200 border mt-2 ml-5 border-gray-300 hover:bg-gray-50 rounded-sm px-3 py-1.5" type="button">
-                <a href="{{ url('auth/twitter') }}">Connect a Social Account</a>
+                <a href="{{ route('twitter.redirect') }}">Connect a Twitter account</a>
             </button>
         </div>
     </div>

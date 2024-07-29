@@ -54,8 +54,8 @@ Route::post('/blogs/{blog}/unlike', [BlogController::class, 'unlike']);
 Route::get('/accounts', [SocialMediaAccountController::class, 'index'])->name('media.index');
 
 // Twitter Routes
-Route::get('auth/twitter', [TwitterController::class, 'redirectToTwitter'])->name('auth.twitter');
-Route::get('auth/twitter/callback',  [TwitterController::class, 'handleTwitterCallback']);
+Route::get('auth/twitter', [TwitterController::class, 'redirectToTwitter'])->name('twitter.redirect');
+Route::get('auth/twitter/callback',  [TwitterController::class, 'handleTwitterCallback'])->name('twitter.callback');
 
 Route::get('test-twitter', function() {
     try {

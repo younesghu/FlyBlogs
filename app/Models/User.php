@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\TwitterAccount;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\SocialMediaAccount;
 use Illuminate\Notifications\Notifiable;
@@ -76,5 +77,9 @@ class User extends Authenticatable
     public function hasLiked(Blog $blog)
     {
         return $this->likes()->where('blog_id', $blog->id)->exists();
+    }
+    public function twitterAccount()
+    {
+        return $this->hasOne(TwitterAccount::class);
     }
 }

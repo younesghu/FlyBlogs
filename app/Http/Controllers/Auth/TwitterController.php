@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
+use App\Models\TwitterAccount;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -29,13 +30,25 @@ class TwitterController extends Controller
                 'nickname' => $twitterUser->nickname,
                 'name' => $twitterUser->name,
                 'email' => $twitterUser->email,
+                'profile_image' => $twitterUser->avatar,
                 'token' => $twitterUser->token,
                 'tokenSecret' => $twitterUser->tokenSecret,
             ]);
 
-            $user->twitter_token = $twitterUser->token;
-            $user->twitter_token_secret = $twitterUser->tokenSecret;
-            $user->save();
+            // Remove any token-saving logic from the User model
+
+            $twitterAccount = TwitterAccount::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'twitter_id' => $twitterUser->id,
+                    'nickname' => $twitterUser->nickname,
+                    'name' => $twitterUser->name,
+                    'email' => $twitterUser->email,
+                    'profile_image' => $twitterUser->avatar,
+                    'token' => $twitterUser->token,
+                    'token_secret' => $twitterUser->tokenSecret,
+                ]
+            );
 
             return redirect()->route('media.index')->with('success', 'Twitter account linked successfully!');
         } catch (\Exception $e) {

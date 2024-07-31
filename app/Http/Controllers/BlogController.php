@@ -6,20 +6,12 @@ use Carbon\Carbon;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Notifications\BlogLiked;
-use App\Services\TwitterService;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Abraham\TwitterOAuth\TwitterOAuth;
+use App\Http\Controllers\Auth\TwitterController;
 
 class BlogController extends Controller
 {
-    protected $twitterService;
-
-    public function __construct(TwitterService $twitterService)
-    {
-        $this->twitterService = $twitterService;
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -49,54 +41,46 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info('Entering store method');
+
         $data = $request->validate([
             'title' => 'required',
             'categories' => 'required',
             'content' => 'required',
         ]);
 
-        if($request->hasFile('blog_img')){
+        Log::info('Data validated', $data);
+
+        if ($request->hasFile('blog_img')) {
             $data['blog_img'] = $request->file('blog_img')->store('blog_imgs', 'public');
+            Log::info('Blog image stored', ['blog_img' => $data['blog_img']]);
         }
+
         if ($request->has('schedule_post')) {
-            // User has opted to schedule the post
             $scheduledDateTime = Carbon::parse($request->scheduled_at);
-
-            // Store the scheduled date and time in the database
             $data['scheduled_at'] = $scheduledDateTime;
-
-            // Set the post status as scheduled and switch to true
             $data['is_scheduled'] = true;
+            Log::info('Post scheduled', ['scheduled_at' => $scheduledDateTime]);
         } else {
-            // Set the post status as published and switch to false
             $data['is_scheduled'] = false;
-            // User wants to publish the post immediately
             $data['posted_at'] = now();
+            Log::info('Post published immediately');
         }
 
-        // Save the post data to the database
         $data['user_id'] = auth()->id();
         $blog = Blog::create($data);
 
-        // Post to twitter if linked
-        $user = Auth::user();
-
-        if ($user->twitter_token && $user->twitter_token_secret) {
-            $twitter = new TwitterOAuth(
-                env('TWITTER_CLIENT_ID'),
-                env('TWITTER_CLIENT_SECRET'),
-                $user->twitter_token,
-                $user->twitter_token_secret
-            );
-
-            $twitter->post("statuses/update", ["status" => $blog->title . ' ' . $blog->content]);
+        if (Auth::user() && Auth::user()->twitter_token && Auth::user()->twitter_token_secret) {
+            try {
+                // Create an instance of TwitterController using dependency injection
+                $twitterController = app(TwitterController::class);
+                $twitterController->postBlogAsTweet($blog, Auth::id());
+                Log::info('Blog posted to Twitter successfully');
+            } catch (\Exception $e) {
+                Log::error('Error posting blog to Twitter', ['error' => $e->getMessage()]);
+            }
         }
-
         return redirect('/');
-        // Save the blog post
-        // $blog = DB::transaction(function () use ($data) {
-        //     return Blog::create($data);
-        // });
     }
 
     public function like(Blog $blog)

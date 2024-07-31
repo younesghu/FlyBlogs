@@ -11,13 +11,10 @@ class TwitterAccount extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'twitter_id',
         'nickname',
         'name',
         'email',
         'profile_image',
-        'token',
-        'token_secret'
     ];
     public function user()
     {

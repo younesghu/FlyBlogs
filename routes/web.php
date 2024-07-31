@@ -1,7 +1,11 @@
 <?php
 
 use App\Models\Blog;
+use App\Models\TwitterAccount;
+use App\Services\TwitterService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
 use Laravel\Socialite\Facades\Socialite;
@@ -33,8 +37,8 @@ use App\Http\Controllers\SocialMediaAccountController;
 // Blog Routes
 Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/manage', [BlogController::class, 'manage']);
-Route::get('/blogs/create', [BlogController::class, 'create']);
-Route::post('/blogs', [BlogController::class, 'store']);
+Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
 Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 Route::put('/blogs/{blog}', [BlogController::class, 'update']);
@@ -57,14 +61,7 @@ Route::get('/accounts', [SocialMediaAccountController::class, 'index'])->name('m
 Route::get('auth/twitter', [TwitterController::class, 'redirectToTwitter'])->name('twitter.redirect');
 Route::get('auth/twitter/callback',  [TwitterController::class, 'handleTwitterCallback'])->name('twitter.callback');
 
-Route::get('test-twitter', function() {
-    try {
-        return Socialite::driver('twitter')->redirect();
-    } catch (\Exception $e) {
-        Log::error('Error in test redirect: ' . $e->getMessage());
-        return 'Failed to redirect: ' . $e->getMessage();
-    }
-});
+Route::get('/test-twitter-post', [TwitterController::class, 'testTwitterPost']);
 
 // Notifications
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');

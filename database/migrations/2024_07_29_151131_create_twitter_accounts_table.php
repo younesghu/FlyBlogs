@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('twitter_accounts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('twitter_id');
             $table->string('nickname')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('profile_image')->nullable();
-            $table->string('token');
-            $table->string('token_secret');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

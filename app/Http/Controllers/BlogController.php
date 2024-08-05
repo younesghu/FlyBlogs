@@ -17,15 +17,22 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::where('is_scheduled', false) // Only fetch posts that are not scheduled
-                  ->orWhere(function($query) {
-                      $query->where('is_scheduled', true)
-                            ->where('scheduled_at', '<=', now()); // Fetch scheduled posts if scheduled_at is in the past
-                  })
-                  ->get();
-                  return view('blogs.index', ['blogs' => Blog::latest() ->where('is_scheduled', false)
-                                                                        ->filter(request(['category','search']))
-                                                                        ->Paginate(6)]);
+        $now = now();
+
+        // Fetch blogs that are either immediate or scheduled and in the past
+        $blogs = Blog::where(function ($query) use ($now) {
+            $query->where('is_scheduled', false)
+                ->orWhere(function ($query) use ($now) {
+                    $query->where('is_scheduled', true)
+                            ->where('scheduled_at', '<=', $now);
+                });
+        })
+        ->filter(request(['category', 'search'])) // Apply any filters
+        ->orderBy('scheduled_at', 'desc') // Order by scheduled_at, so scheduled posts are prioritized
+        ->orderBy('posted_at', 'desc') // Order by posted_at to ensure immediate posts appear correctly
+        ->paginate(6); // Paginate results
+
+        return view('blogs.index', ['blogs' => $blogs]);
     }
 
     /**
@@ -41,47 +48,52 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info('Entering store method');
-
+        // Validate and store title, categories, and content in $data
         $data = $request->validate([
             'title' => 'required',
             'categories' => 'required',
             'content' => 'required',
         ]);
 
-        Log::info('Data validated', $data);
-
+        // Check if a blog image is uploaded and store it in the 'public/blog_imgs' directory
         if ($request->hasFile('blog_img')) {
-            $data['blog_img'] = $request->file('blog_img')->store('blog_imgs', 'public');
-            Log::info('Blog image stored', ['blog_img' => $data['blog_img']]);
-        }
+                $data['blog_img'] = $request->file('blog_img')->store('blog_imgs', 'public');
+            }
 
+        // Check if blog is scheduled
         if ($request->has('schedule_post')) {
+            // Parse and set the scheduled date and time
             $scheduledDateTime = Carbon::parse($request->scheduled_at);
             $data['scheduled_at'] = $scheduledDateTime;
             $data['is_scheduled'] = true;
-            Log::info('Post scheduled', ['scheduled_at' => $scheduledDateTime]);
+            $data['posted_at'] = null;
         } else {
+            // Set posted_at to the current time for immediate posts
             $data['is_scheduled'] = false;
             $data['posted_at'] = now();
-            Log::info('Post published immediately');
         }
 
+        // Determine if the blog should be shared on Twitter
         $data['share_in_twitter'] = $request->has('share_in_twitter');
         $data['user_id'] = auth()->id();
+
+        // Create a new blog entry in the database
         $blog = Blog::create($data);
 
+        // If sharing on Twitter is enabled, and the user has valid Twitter credentials, post the blog to Twitter
         if ($data['share_in_twitter'] && Auth::user() && Auth::user()->twitter_token && Auth::user()->twitter_token_secret) {
-            try {
-                // Create an instance of TwitterController using dependency injection
-                $twitterController = app(TwitterController::class);
-                $twitterController->postBlogAsTweet($blog, Auth::id());
-                Log::info('Blog posted to Twitter successfully');
-            } catch (\Exception $e) {
-                Log::error('Error posting blog to Twitter', ['error' => $e->getMessage()]);
+                try {
+                    // Use dependency injection to get an instance of TwitterController
+                    $twitterController = app(TwitterController::class);
+                    $twitterController->postBlogAsTweet($blog, Auth::id());
+                } catch (\Exception $e) {
+                    // Log an error if posting to Twitter fails
+                    Log::error('Error posting blog to Twitter', ['error' => $e->getMessage()]);
+                }
             }
-        }
-        return redirect('/');
+
+            // Redirect to the homepage after storing the blog
+            return redirect('/');
     }
 
     public function like(Blog $blog)

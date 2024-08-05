@@ -77,7 +77,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
         $user = auth()->user();
         $data = $request->validate([
@@ -89,7 +89,28 @@ class UserController extends Controller
         }
         $user->update($data);
 
-        return redirect('/');
+        return redirect()->back();
+    }
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = auth()->user();
+
+        // Check if current password matches
+        if (!password_verify($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect']);
+        }
+
+        // Update the password
+        $user->update([
+            'password' => bcrypt($request->new_password),
+        ]);
+
+        return redirect()->back();
     }
 
     /**

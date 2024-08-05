@@ -64,7 +64,8 @@ Route::get('/notifications', [NotificationController::class, 'index'])->name('no
 
 // User Routes
 Route::post('/users', [UserController::class, 'store']);
-Route::put('/users/settings', [UserController::class, 'update'])->name('users.update');
+Route::put('/user/update', [UserController::class, 'updateProfile'])->name('user.update');
+Route::put('/password/update', [UserController::class, 'resetPassword'])->name('password.update');
 Route::get('/users/settings', [UserController::class, 'edit']);
 
 Route::get('/register', [UserController::class, 'create']);

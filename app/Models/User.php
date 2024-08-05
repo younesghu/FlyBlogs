@@ -56,10 +56,6 @@ class User extends Authenticatable
     public function comments() {
         return $this->hasMany(Comment::class, 'user_id');
     }
-     public function socialMediaAccounts()
-    {
-        return $this->hasMany(SocialMediaAccount::class);
-    }
     public function likes()
     {
         return $this->belongsToMany(Blog::class, 'likes');

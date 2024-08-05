@@ -1,7 +1,6 @@
 @extends('components.layout')
 
 @section('content')
-
 <div class="relative overflow-x-auto shadow-md">
     <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white">
         <div>
@@ -17,31 +16,23 @@
     @endif
 
     @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
     @endif
-
-    <h1>Media Page</h1>
 
     @if(Auth::user()->twitterAccount)
     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Status
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
+                <th scope="col" class="px-6 py-3">Name</th>
+                <th scope="col" class="px-6 py-3">Status</th>
+                <th scope="col" class="px-6 py-3">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr class="bg-white border-b hover:bg-gray-100">
-                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
                     <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->twitterAccount->profile_image }}" alt="">
                     <div class="ps-3">
                         <div class="text-base text-gray-900 font-semibold">{{ Auth::user()->twitterAccount->name }}</div>
@@ -54,15 +45,17 @@
                     </div>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-red-600 hover:underline">Delete Account</a>
+                    <form action="{{route('twitter.destroy')}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="font-medium text-red-600 hover:underline">Delete Account</button>
+                    </form>
                 </td>
             </tr>
         </tbody>
     </table>
     @else
-        <p>No Twitter account linked.</p>
+    <p>No Twitter account linked.</p>
     @endif
 </div>
-
-
 @endsection

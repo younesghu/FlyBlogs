@@ -2,13 +2,10 @@
 
 use App\Models\Blog;
 use App\Models\TwitterAccount;
-use App\Services\TwitterService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
-use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\TwitterController;
 use App\Http\Controllers\NotificationController;
@@ -60,8 +57,7 @@ Route::get('/accounts', [SocialMediaAccountController::class, 'index'])->name('m
 // Twitter Routes
 Route::get('auth/twitter', [TwitterController::class, 'redirectToTwitter'])->name('twitter.redirect');
 Route::get('auth/twitter/callback',  [TwitterController::class, 'handleTwitterCallback'])->name('twitter.callback');
-
-Route::get('/test-twitter-post', [TwitterController::class, 'testTwitterPost']);
+Route::delete('/twitter-destroy', [TwitterController::class, 'destroy'])->name('twitter.destroy');
 
 // Notifications
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');

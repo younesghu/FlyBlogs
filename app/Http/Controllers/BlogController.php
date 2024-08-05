@@ -67,10 +67,11 @@ class BlogController extends Controller
             Log::info('Post published immediately');
         }
 
+        $data['share_in_twitter'] = $request->has('share_in_twitter');
         $data['user_id'] = auth()->id();
         $blog = Blog::create($data);
 
-        if (Auth::user() && Auth::user()->twitter_token && Auth::user()->twitter_token_secret) {
+        if ($data['share_in_twitter'] && Auth::user() && Auth::user()->twitter_token && Auth::user()->twitter_token_secret) {
             try {
                 // Create an instance of TwitterController using dependency injection
                 $twitterController = app(TwitterController::class);

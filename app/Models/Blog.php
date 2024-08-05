@@ -20,6 +20,7 @@ class Blog extends Model
         'likes',
         'scheduled_at',
         'is_scheduled',
+        'share_in_twitter',
         'posted_at'
     ];
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('content');
             $table->datetime('scheduled_at')->nullable();
             $table->boolean('is_scheduled')->default(false);
+            $table->boolean('share_in_twitter')->default(false);
             $table->datetime('posted_at')->nullable();
             $table->timestamps();
         });

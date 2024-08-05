@@ -6,7 +6,7 @@
 
         <nav class="bg-gray-100">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <a href="/" class="flex items-center">
                     <img src="../images/navimg.png" class="h-8" alt="LOGO" />
                     <span class="self-center text-2xl hover:text-gray-500 font-semibold whitespace-nowrap">Blog App</span>
                 </a>
@@ -15,16 +15,22 @@
                     <div class="relative">
                         <button id="notificationButton" class="relative z-10 block p-2 text-gray-900 rounded-full focus:outline-none">
                             <i class="fa fa-bell" aria-hidden="true"></i>
-                            <span class="badge badge-light">{{ auth()->user()->unreadNotifications->count() }}</span>
+                            @if(auth()->user()->unreadNotifications->count() > 0)
+                                <span class="badge badge-light">{{ auth()->user()->unreadNotifications->count() }}</span>
+                            @endif
                         </button>
                         <div id="notificationMenu" class="hidden absolute right-0 mt-2 w-64 bg-white divide-y divide-gray-100 border border-gray-300 rounded-lg shadow">
-                            @foreach(auth()->user()->unreadNotifications as $notification)
-                            <a href="/blogs/{{ $notification->data['blog_id'] }}">
-                                <div class="p-4 border-b border-gray-300 hover:bg-gray-100">
-                                    {!! $notification->data['message'] !!}
+                            @forelse(auth()->user()->unreadNotifications as $notification)
+                                <a href="/blogs/{{ $notification->data['blog_id'] }}">
+                                    <div class="p-4 border-b border-gray-300 hover:bg-gray-100">
+                                        {!! $notification->data['message'] !!}
+                                    </div>
+                                </a>
+                            @empty
+                                <div class="p-4 text-gray-600">
+                                    You don't have any notifications yet.
                                 </div>
-                            </a>
-                            @endforeach
+                            @endforelse
                         </div>
                     </div>
                     <button type="button" class="flex text-sm bg-gray-500 rounded-full md:me-0" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
@@ -85,7 +91,7 @@
                             <li>
                                 <a href="/blogs/create" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0">
                                     Create Blog
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-book-open"></i>
                                 </a>
                             </li>
                         @endauth

@@ -22,9 +22,11 @@ class TwitterController extends Controller
     public function handleTwitterCallback()
     {
         try {
+            // Get user details from Twitter after authentication
             $twitterUser = Socialite::driver('twitter')->user();
             $user = Auth::user();
 
+            // Check if the user is authenticated
             if (!$user) {
                 return redirect()->route('login')->with('error', 'User not authenticated');
             }
@@ -35,7 +37,7 @@ class TwitterController extends Controller
             $user->twitter_id = $twitterUser->id;
             $user->save();
 
-            // Save other Twitter user details
+            // Save or update Twitter user details in the TwitterAccount model
             TwitterAccount::updateOrCreate(
                 ['user_id' => $user->id],
                 [
@@ -56,13 +58,13 @@ class TwitterController extends Controller
         $user = Auth::user();
         $userId = Auth::id();
 
-        // Fetch tokens from the users table
+        // Ensure user has valid Twitter tokens
         if (!$user || !$user->twitter_token || !$user->twitter_token_secret) {
             Log::error('Twitter tokens not found for user', ['user_id' => $userId]);
             return redirect()->route('media.index')->with('error', 'Twitter tokens not found.');
         }
 
-        // Use the TwitterOAuth library to post the tweet
+        // Initialize TwitterOAuth connection with credentials
         $connection = new TwitterOAuth(
             config('services.twitter.client_id'), // API Key
             config('services.twitter.client_secret'), // API Secret Key
@@ -74,22 +76,24 @@ class TwitterController extends Controller
         $tweetContent = $blog->title . "\n\n" . Str::limit($blog->content, 240);
 
         try {
+            // Post the tweet to Twitter
             $response = $connection->post("tweets", ["text" => $tweetContent]);
 
             if ($connection->getLastHttpCode() == 201) {
                 Log::info('Posted tweet', ['tweet' => $response]);
-                return redirect('/')->with('success', 'Blog posted successfully and tweeted!');
+                return redirect('/');
             } else {
                 Log::error('Failed to post blog as tweet', ['response' => $response]);
-                return redirect('/')->with('error', 'Failed to post blog as tweet.');
+                return redirect('/');
             }
         } catch (\Exception $e) {
             Log::error('Failed to post blog as tweet', ['error' => $e->getMessage()]);
-            return redirect('/')->with('error', 'Failed to post blog as tweet.');
+            return redirect('/');
         }
     }
     public function destroy()
     {
+        // Ensure user is authenticated
         $user = Auth::user();
         if (!$user) {
             return redirect()->back()->with('error', 'User not authenticated.');

@@ -82,10 +82,10 @@
                             <a href="/" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0" aria-current="page">Home</a>
                         </li>
                         <li>
-                            <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0">Categories</a>
+                            <a href="/about" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0">About App</a>
                         </li>
                         <li>
-                            <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0">Contact</a>
+                            <a href="mailto:younes.guigaho.biz@gmail.com" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0">Contact Me</a>
                         </li>
                         @auth
                             <li>

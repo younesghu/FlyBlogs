@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Blog;
-use App\Models\TwitterAccount;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
@@ -22,51 +19,42 @@ use App\Http\Controllers\SocialMediaAccountController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('main');
-// });
-// Route::post('/register', [UserController::class, 'register']);
-// Route::get('/login', [UserController::class, 'login']);
-// Route::post('/authentificate', [UserController::class, 'authentificate']);
-// Route::post('/logout', [UserController::class, 'logout']);
-
-
 // Blog Routes
 Route::get('/', [BlogController::class, 'index']);
-Route::get('/blogs/manage', [BlogController::class, 'manage']);
-Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
-Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+Route::get('/about', function () { return view('about'); });
+Route::get('/blogs/manage', [BlogController::class, 'manage'])->middleware('auth');
+Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create')->middleware('auth');
+Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store')->middleware('auth');
 Route::get('/blogs/{blog}', [BlogController::class, 'show']);
-Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
-Route::put('/blogs/{blog}', [BlogController::class, 'update']);
-Route::delete('/blogs/{blog}', [BlogController::class, 'destroy']);
+Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit')->middleware('auth');
+Route::put('/blogs/{blog}', [BlogController::class, 'update'])->middleware('auth');
+Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->middleware('auth');
 
 // Comments Routes
 Route::post('/blogs/{blog}', [CommentController::class, 'store'])->middleware('auth');
+Route::put('/blogs/{blog}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update')->middleware('auth');
+Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
 
-Route::put('/blogs/{blog}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
-Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
-
-// Blog likes
-Route::post('/blogs/{blog}/like', [BlogController::class, 'like']);
-Route::post('/blogs/{blog}/unlike', [BlogController::class, 'unlike']);
+// Blog likes Routes
+Route::post('/blogs/{blog}/like', [BlogController::class, 'like'])->middleware('auth');
+Route::post('/blogs/{blog}/unlike', [BlogController::class, 'unlike'])->middleware('auth');
 
 // Social Media Accounts Routes
-Route::get('/accounts', [SocialMediaAccountController::class, 'index'])->name('media.index');
+Route::get('/accounts', [SocialMediaAccountController::class, 'index'])->name('media.index')->middleware('auth');
 
 // Twitter Routes
-Route::get('auth/twitter', [TwitterController::class, 'redirectToTwitter'])->name('twitter.redirect');
-Route::get('auth/twitter/callback',  [TwitterController::class, 'handleTwitterCallback'])->name('twitter.callback');
-Route::delete('/twitter-destroy', [TwitterController::class, 'destroy'])->name('twitter.destroy');
+Route::get('auth/twitter', [TwitterController::class, 'redirectToTwitter'])->name('twitter.redirect')->middleware('auth');
+Route::get('auth/twitter/callback',  [TwitterController::class, 'handleTwitterCallback'])->name('twitter.callback')->middleware('auth');
+Route::delete('/twitter-destroy', [TwitterController::class, 'destroy'])->name('twitter.destroy')->middleware('auth');
 
 // Notifications
-Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index')->middleware('auth');
 
 // User Routes
 Route::post('/users', [UserController::class, 'store']);
-Route::put('/user/update', [UserController::class, 'updateProfile'])->name('user.update');
-Route::put('/password/update', [UserController::class, 'resetPassword'])->name('password.update');
-Route::get('/users/settings', [UserController::class, 'edit']);
+Route::put('/user/update', [UserController::class, 'updateProfile'])->name('user.update')->middleware('auth');
+Route::put('/password/update', [UserController::class, 'resetPassword'])->name('password.update')->middleware('auth');
+Route::get('/users/settings', [UserController::class, 'edit'])->middleware('auth');
 
 Route::get('/register', [UserController::class, 'create']);
 Route::post('/users/authentificate', [UserController::class, 'authentificate']);

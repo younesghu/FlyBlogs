@@ -30,19 +30,19 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="">
+                    Share Blog in Twitter
+                    <input class="ml-5" type="checkbox" id="share_in_twitter" name="share_in_twitter">
+                </label>
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="scheduled_at">
                     Blog Schedule
                     <input class="ml-5" type="checkbox" id="schedule_post" name="schedule_post" onclick="toggleDateTimeInput()">
                 </label>
                 <input class="appearance-none block w-full bg-gray-50 text-gray-900 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none" id="datetime_input" type="datetime-local" name="scheduled_at" placeholder="" style="display: none;">
-            </div>
-        </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="">
-                    Share Blog in Twitter
-                    <input class="ml-5" type="checkbox" id="share_in_twitter" name="share_in_twitter">
-                </label>
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-2">

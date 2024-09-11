@@ -45,13 +45,13 @@
                             {{$blog->likes()->count()}}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="/blogs/{{$blog->id}}/edit" class="font-medium text-blue-600 hover:underline">Edit</a>
+                            <a href="/blogs/{{$blog->id}}/edit" class="font-medium text-blue-500 hover:underline">Edit</a>
                         </td>
                         <td class="px-6 py-4">
-                            <form method="POST" action="/blogs/{{$blog->id}}">
+                            <form method="POST" action="/blogs/{{$blog->id}}" onsubmit="return confirmDelete()">
                                 @csrf
                                 @method('DELETE')
-                            <button class="font-medium text-red-600 hover:underline">Remove</button>
+                            <button class="font-medium text-red-500 hover:underline">Remove</button>
                             </form>
                         </td>
                     </tr>
@@ -75,3 +75,8 @@
     </div>
 
 @endsection
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this blog?');
+    }
+</script>

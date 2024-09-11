@@ -10,13 +10,13 @@
         </div>
     </div>
     @if(session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success text-center text-green-500">
         {{ session('success') }}
     </div>
     @endif
 
     @if(session('error'))
-    <div class="alert alert-danger">
+    <div class="alert alert-danger text-center text-red-500">
         {{ session('error') }}
     </div>
     @endif
@@ -55,7 +55,7 @@
         </tbody>
     </table>
     @else
-    <p>No Twitter account linked.</p>
+    <p class="text-center text-gray-800">No Twitter account linked.</p>
     @endif
 </div>
 @endsection

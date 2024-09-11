@@ -3,16 +3,16 @@
 @section('content')
 <h1 class="text-center text-5xl mx-auto lg:w-3/4 font-bold">Blog</h1>
 <div class="mt-8 text-center">
-    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-900 mr-2 mb-2">
+    <span class="inline-block shadow-md bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
         <a href="/">All</a>
     </span>
-    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
+    <span class="inline-block shadow-md bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
         <a href="/?category=technology">Technology</a>
     </span>
-    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
+    <span class="inline-block shadow-md bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
         <a href="/?category=lifestyle">Lifestyle</a>
     </span>
-    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
+    <span class="inline-block shadow-md bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
         <a href="/?category=travel">Travel</a>
     </span>
 </div>
@@ -21,7 +21,7 @@
         <div class="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-x-6 gap-y-6">
             @foreach ($blogs as $blog)
                 @if (!$blog->is_scheduled || ($blog->is_scheduled && $blog->scheduled_at <= now()))
-                    <a href="/blogs/{{$blog->id}}" class="flex flex-col items-center border border-gray-200 rounded shadow md:flex-row md:max-w-xl bg-gray-50 hover:bg-gray-100">
+                    <a href="/blogs/{{$blog->id}}" class="flex flex-col items-center border border-gray-200 rounded shadow-md md:flex-row md:max-w-xl bg-gray-50 hover:bg-gray-100">
                         <img class="w-full h-full md:w-48 rounded-sm" src="{{$blog->blog_img ? asset('storage/' . $blog->blog_img) : asset('images/blogimg.jpg')}}" alt="">
                         <div class="flex flex-col justify-between p-4 leading-normal">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{$blog->title}}</h5>
@@ -38,7 +38,7 @@
                             <div class="flex items-center">
                                 <img src="{{ $blog->user->user_img ? asset('storage/' . $blog->user->user_img) : asset('images/img.webp') }}" alt="User Image" class="w-8 h-8 rounded-full mr-3">
                                 <div class="text-sm">
-                                    <p class="font-semibold text-gray-900 leading-none">By: {{$blog->user->name}}</p>
+                                    <p class="text-gray-900 leading-none">By: <span class="text-transform: uppercase font-bold">{{$blog->user->name}}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -47,6 +47,7 @@
             @endforeach
         </div>
     </div>
+
     <div class="mt-2 p-2">
         {{$blogs->links()}}
     </div>

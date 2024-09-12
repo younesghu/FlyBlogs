@@ -2,8 +2,7 @@
 
 ## Use Case Diagram
 
-![Task App Use Case](https://github.com/user-attachments/assets/aa18b5c2-d591-4cb2-9a9b-28210005ad68)
-
+![Task App Use Case](https://github.com/user-attachments/assets/625879c4-57dd-4186-9a49-84b4d7e0609f)
 
 ## License
 

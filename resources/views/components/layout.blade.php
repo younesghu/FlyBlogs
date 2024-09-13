@@ -1,7 +1,8 @@
-<script src="https://cdn.tailwindcss.com"></script>
+
+@vite('resources/css/app.css')
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <body class="min-h-screen flex flex-col">
@@ -11,8 +12,9 @@
         <nav class="bg-gray-100 relative shadow-md">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="/" class="flex items-center">
-                    <span class="self-center text-2xl hover:text-gray-500 font-semibold whitespace-nowrap">
-                        Blog Wave
+                    <span class="self-center text-2xl hover:text-gray-500 font-bold whitespace-nowrap">
+                        FlyBlogs
+                        <i class="fa fa-plane" aria-hidden="true"></i>
                     </span>
                 </a>
                 @auth
@@ -75,14 +77,10 @@
                 @else
                 <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <a href="/register">
-                        <button type="button" class="p-3 mr-2 text-xs font-medium text-center text-white bg-gray-600 rounded-sm hover:bg-gray-500">
-                            Sign up
-                        </button>
+                        <button type="button" class="text-white bg-gray-400 border border-gray-400 hover:border-gray-500 hover:text-gray-800 focus:outline-none font-medium rounded text-sm px-4 py-2.5 text-center me-2 mb-2">Register</button>
                     </a>
                     <a href="/login">
-                        <button type="button" class="p-3 text-xs font-medium text-center text-white bg-gray-600 rounded-sm hover:bg-gray-500">
-                            Log in
-                        </button>
+                        <button type="button" class="text-white bg-gray-400 border border-gray-400 hover:border-gray-500 hover:text-gray-800 focus:outline-none font-medium rounded text-sm px-4 py-2.5 text-center me-2 mb-2">Login</button>
                     </a>
                 </div>
                 @endauth
@@ -91,22 +89,21 @@
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
                     <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
                         <li>
-                            <a href="/" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0" aria-current="page">
+                            <a href="/" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0  {{ Request::is('/') ? 'underline' : '' }}" aria-current="page">
                                 Home
-                                <i class="fa fa-home" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="/about" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0">
+                            <a href="/about" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0  {{ Request::is('about') ? 'underline' : '' }}">
                                 About App
-                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                {{-- <i class="fa fa-question" aria-hidden="true"></i> --}}
                             </a>
                         </li>
                         @auth
                             <li>
-                                <a href="/blogs/create" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0">
+                                <a href="/blogs/create" class="block py-2 px-3 text-gray-900 rounded hover:text-gray-500 md:p-0  {{ Request::is('blogs/create') ? 'underline' : '' }}">
                                     Create Blog
-                                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                    {{-- <i class="fa fa-plus" aria-hidden="true"></i> --}}
                                 </a>
                             </li>
                         @endauth
@@ -122,7 +119,7 @@
     </main>
 
     {{-- Footer --}}
-    <footer class="bg-gray-100 mt-4 shadow">
+    <footer class="bg-gray-100">
         <div class="mx-auto w-full max-w-screen-xl p-4 lg:py-8">
             <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
             <div class="flex justify-between items-center">
@@ -157,4 +154,4 @@
             notificationMenu.classList.add('hidden');
         }
     });
-</script>
+</>

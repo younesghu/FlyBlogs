@@ -1,7 +1,7 @@
 @extends('components.layout')
 
 @section('content')
-<h1 class="text-center text-5xl mx-auto lg:w-3/4 font-bold">Blog</h1>
+<h1 class="text-center text-gray-800 hover:text-gray-500 text-2xl italic mx-auto lg:w-3/4 font-medium">"Where Creativity Takes Flight—Share Your World with FlyBlogs."</h1>
 <div class="mt-8 text-center">
     <span class="inline-block shadow-md bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-gray-500 mr-2 mb-2">
         <a href="/">All</a>
@@ -48,8 +48,11 @@
         </div>
     </div>
 
-    <div class="mt-2 p-2">
-        {{$blogs->links()}}
+    <div class="flex justify-center">
+        <div class="mt-2 w-full max-w-6xl">
+            {{$blogs->links()}}
+        </div>
     </div>
+
 
 @endsection

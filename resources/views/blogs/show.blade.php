@@ -1,8 +1,8 @@
 @extends('components.layout')
 @section('content')
-<section class="">
+<section class="max-w-7xl mx-auto my-6">
     <div class="text-center">
-            {{-- @auth
+            @auth
                 @if(auth()->user()->id === $blog->user_id)
                 <div class="flex justify-end space-x-4 mb-4">
                     <button onclick="window.location.href='/blogs/{{$blog->id}}/edit'" class="text-sm text-blue-500">
@@ -17,21 +17,10 @@
                     </form>
                 </div>
                 @endif
-            @endauth --}}
+            @endauth
 
-
-            {{-- Blog Owner div, image, Name, CreatedTime & ReadingTime --}}
-            <div class="flex justify-center items-center">
-
-                <!-- Blog Owner's Information -->
-                <div class="flex items-center space-x-4 p-4 bg-gray-100 rounded-3xl mb-4">
-                    <img src="{{ optional($blog->user)->user_img ? asset('storage/' . optional($blog->user)->user_img) : asset('images/img.webp') }}" alt="Profile Picture" class="w-12 h-12 rounded-full">
-                    <div>
-                        <div class="font-extrabold text-2xl">{{(($blog->user)->name)}}</div>
-                        <div class="text-gray-500">{{$blog->created_at->format('M d, Y')}} &#183; {{$readingTime}} min read</div>
-                    </div>
-                </div>
-            </div>
+            {{-- Blog Title --}}
+            <h1 class="text-5xl mx-auto lg:w-3/4 leading-normal font-serif font-bold">{{$blog->title}}</h1>
 
             {{-- Blog Categories --}}
             <div class="">
@@ -40,15 +29,12 @@
 
             {{-- Number of Likes --}}
             <div id="like-count-container justify-center items-center" class="">
-                <i>
+                <i class="font-serif">
                     Likes:
                     <span id="like-count">{{ $blog->likes()->count() }}</span>
                 </i>
                 <i class="fa fa-heart text-red-500"></i>
             </div>
-
-            {{-- Blog Title --}}
-            <h1 class="text-5xl mx-auto lg:w-3/4 font-bold mb-4">{{$blog->title}}</h1>
 
     </div>
 
@@ -64,15 +50,15 @@
         <div class="w-full lg:w-2/3 flex flex-col justify-between">
 
             {{-- Blog Content --}}
-            <p class="text-md text-gray-700 leading-relaxed flex-grow">{{$blog->content}}</p>
+            <p class="text-md text-gray-700 leading-loose font-serif flex-grow">{{$blog->content}}</p>
 
         </div>
 
     </div>
 
     {{-- Like Blog --}}
-    <div class="flex items-center justify-center space-x-4 mb-4">
-        <button id="like-btn" class="text-xl text-red-500 hover:text-red-600"
+    <div class="flex items-center justify-center space-x-4 my-4">
+        <button id="like-btn" class="text-xl text-red-500 font-serif hover:text-red-600"
             @auth
                 data-liked="{{ auth()->check() && auth()->user()->hasLiked($blog) ? 'true' : 'false' }}"
                 onclick="toggleLike({{ $blog->id }})"
@@ -91,10 +77,8 @@
     </div>
 
     {{-- Comments Section --}}
-    <div class="w-1/2 mx-auto rounded-lg border border-gray-200 p-4">
-        <div class="">
-            @include('blogs.comments', ['comments' => $comments, 'blog' => $blog])
-        </div>
+    <div>
+        @include('blogs.comments', ['comments' => $comments, 'blog' => $blog])
     </div>
 
 </section>

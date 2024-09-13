@@ -30,7 +30,7 @@ class BlogController extends Controller
         ->filter(request(['category', 'search'])) // Apply any filters
         ->orderBy('scheduled_at', 'desc') // Order by scheduled_at, so scheduled posts are prioritized
         ->orderBy('posted_at', 'desc') // Order by posted_at to ensure immediate posts appear correctly
-        ->paginate(6); // Paginate results
+        ->simplePaginate(6); // Paginate results
 
         return view('blogs.index', ['blogs' => $blogs]);
     }

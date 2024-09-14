@@ -66,7 +66,7 @@ php artisan migrate
 php artisan migrate:fresh --seed
   </code></pre>
   
-<strong>Optionally, you can use the <code>migrate:fresh --seed</code> command to reset your database and seed it with sample data. This will include a user with the following details:</strong>
+<p>Optionally, you can use the <strong><code>migrate:fresh --seed</code></strong> command to reset your database and seed it with sample data. This will include a user with the following details:</p>
 
 <ul>
   <li><strong>Name:</strong> David Johnson</li>

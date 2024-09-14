@@ -24,7 +24,6 @@
     <li>OAuth Twitter Integration</li>
     <li>MySQL database</li>
     <li>Tailwind CSS</li>
-    <li>OAuth</li>
 </ul>
 
 ## Installation & Setup
@@ -89,7 +88,12 @@ php artisan serve
     <li>Go to the <a href="https://developer.twitter.com/">Twitter Developer Portal</a> and create a Twitter app.</li>
     <li>Get your <strong>API Key</strong>, <strong>API Secret Key</strong>, <strong>Access Token</strong>, and <strong>Access Token Secret</strong>.</li>
     <li>Add these credentials to your <code>.env</code> file:</li>
-        <pre><code> TWITTER_CLIENT_ID=your-twitter-api-key TWITTER_CLIENT_SECRET=your-twitter-api-secret TWITTER_ACCESS_TOKEN=your-twitter-access-token TWITTER_ACCESS_SECRET=your-twitter-access-secret </code></pre> 
+        <pre><code> 
+            TWITTER_CLIENT_ID=your-twitter-api-key 
+            TWITTER_CLIENT_SECRET=your-twitter-api-secret 
+            TWITTER_ACCESS_TOKEN=your-twitter-access-token 
+            TWITTER_ACCESS_SECRET=your-twitter-access-secret 
+        </code></pre> 
     <li>Ensure the user has linked their Twitter account through OAuth to share posts directly on Twitter.</li> 
 </ul>
 

@@ -3,7 +3,7 @@
 <hr>
 
 ## About 
-<p>FlyBlogs is a blogging platform built with Laravel. It allows users to create, manage, and share blog posts, including integration with Twitter for easy social sharing. The app includes features like blog scheduling, image uploads, and filtering based on categories.</p>
+<p>FlyBlogs is a dynamic blogging platform built with Laravel. It enables users to create, manage, and share blog posts, with integrated Twitter support for instant or scheduled social sharing. Key features include blog scheduling, image uploads, post filtering by categories, a notification system, and interactive user engagement tools.</p>
 
 <p><strong>Features:</strong></p>
 
@@ -11,7 +11,7 @@
     <li>Complete Blog post management system: Create, Read, Update, and Delete (CRUD) blog posts.</li>
     <li>Secure user authentication and profile customization.</li>
     <li>Integrated Twitter sharing, allowing both instant and scheduled posts directly to Twitter.</li>
-    <li>Interactive commenting system and "like" feature for user engagement.</li>
+    <li>Interactive commenting system and "like" feature for user engagement, with notifications sent to blog owners when a like or comment is created.</li>
     <li>Responsive design ensuring optimal display on both desktop and mobile devices.</li>
     <li>Filter and browse blogs by title, category, and description for enhanced searchability.</li>
 </ul>

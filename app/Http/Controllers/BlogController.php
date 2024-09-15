@@ -81,7 +81,7 @@ class BlogController extends Controller
         $blog = Blog::create($data);
 
         // If sharing on Twitter is enabled, and the user has valid Twitter credentials, post the blog to Twitter
-        if ($data['share_in_twitter'] && Auth::user() && Auth::user()->twitter_token && Auth::user()->twitter_token_secret) {
+        if ($data['share_in_twitter'] && !$data['is_scheduled'] && Auth::user() && Auth::user()->twitter_token && Auth::user()->twitter_token_secret) {
                 try {
                     // Use dependency injection to get an instance of TwitterController
                     $twitterController = app(TwitterController::class);

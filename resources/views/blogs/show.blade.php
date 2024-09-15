@@ -2,39 +2,23 @@
 @section('content')
 <section class="max-w-7xl mx-auto my-6">
     <div class="text-center">
-            @auth
-                @if(auth()->user()->id === $blog->user_id)
-                <div class="flex justify-end space-x-4 mb-4">
-                    <button onclick="window.location.href='/blogs/{{$blog->id}}/edit'" class="text-sm text-blue-500">
-                        <i class="fa-solid fa-pencil"></i> Edit
-                    </button>
-                    <form method="POST" action="/blogs/{{$blog->id}}" onsubmit="return confirmDelete()">
-                        @csrf
-                        @method('DELETE')
-                        <button class="text-sm text-red-500">
-                            <i class="fa-solid fa-trash mt-3"></i> Delete
-                        </button>
-                    </form>
-                </div>
-                @endif
-            @endauth
 
-            {{-- Blog Title --}}
-            <h1 class="text-5xl mx-auto lg:w-3/4 leading-normal font-serif font-bold">{{$blog->title}}</h1>
+        {{-- Blog Title --}}
+        <h1 class="text-5xl mx-auto lg:w-3/4 leading-normal font-serif font-bold">{{$blog->title}}</h1>
 
-            {{-- Blog Categories --}}
-            <div class="">
-                <x-blog-categories :categoriesCsv="$blog->categories" />
-            </div>
+        {{-- Blog Categories --}}
+        <div class="">
+            <x-blog-categories :categoriesCsv="$blog->categories" />
+        </div>
 
-            {{-- Number of Likes --}}
-            <div id="like-count-container justify-center items-center" class="">
-                <i class="font-serif">
-                    Likes:
-                    <span id="like-count">{{ $blog->likes()->count() }}</span>
-                </i>
-                <i class="fa fa-heart text-red-500"></i>
-            </div>
+        {{-- Number of Likes --}}
+        <div id="like-count-container justify-center items-center" class="">
+            <i class="font-serif">
+                Likes:
+                <span id="like-count">{{ $blog->likes()->count() }}</span>
+            </i>
+            <i class="fa fa-heart text-red-500"></i>
+        </div>
 
     </div>
 
@@ -53,7 +37,6 @@
             <p class="text-md text-gray-700 leading-loose font-serif flex-grow">{{$blog->content}}</p>
 
         </div>
-
     </div>
 
     {{-- Like Blog --}}
@@ -112,9 +95,5 @@
 
     function redirectToLogin() {
         window.location.href = '{{ route('login') }}';
-    }
-
-    function confirmDelete() {
-        return confirm('Are you sure you want to delete this blog?');
     }
 </script>

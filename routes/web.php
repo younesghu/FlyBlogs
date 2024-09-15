@@ -20,7 +20,7 @@ use App\Http\Controllers\SocialMediaAccountController;
 */
 
 // Blog Routes
-Route::get('/', [BlogController::class, 'index']);
+Route::get('/', [BlogController::class, 'index'])->name('home');
 Route::get('/about', function () { return view('about'); });
 Route::get('/blogs/manage', [BlogController::class, 'manage'])->middleware('auth');
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create')->middleware('auth');

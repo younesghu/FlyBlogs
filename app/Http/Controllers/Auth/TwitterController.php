@@ -55,8 +55,8 @@ class TwitterController extends Controller
     }
     public function postBlogAsTweet(Blog $blog, $userId)
     {
-        $user = Auth::user();
-        $userId = Auth::id();
+        $user = User::find($userId);
+
 
         // Ensure user has valid Twitter tokens
         if (!$user || !$user->twitter_token || !$user->twitter_token_secret) {
@@ -73,7 +73,7 @@ class TwitterController extends Controller
         );
 
         $connection->setApiVersion('2');
-        $tweetContent = $blog->title . "\n\n" . Str::limit($blog->content, 240);
+        $tweetContent = $blog->title . "\n\n" . Str::limit(strip_tags($blog->content), 240);
 
         try {
             // Post the tweet to Twitter
